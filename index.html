@@ -1,140 +1,247 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cursed</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>CursedLov | Tech & Gaming</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&display=swap');
-
-        :root {
-            --bg-color: #020202;
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            overflow: hidden;
-            font-family: 'Syncopate', sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            width: 100vw;
+            background-color: #050505; /* Fondo muy oscuro casi negro */
+            color: #ffffff;
+            overflow-x: hidden;
         }
 
-        /* RGB Ambiental que cubre toda la pantalla */
-        .ambient-canvas {
+        /* Tipografía y Colores Principales */
+        :root {
+            --primary-color: #00f3ff; /* Cian neón similar al de la referencia */
+            --secondary-color: #1a1a1a;
+            --text-gray: #b0b0b0;
+        }
+
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(5, 5, 5, 0.9);
             position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
-            height: 100%;
-            z-index: 0;
-            filter: blur(100px);
-            opacity: 0.6;
-            animation: fullRotate 15s linear infinite;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.1);
         }
 
-        .glow-point {
-            position: absolute;
-            width: 60vw;
-            height: 60vh;
-            border-radius: 50%;
-            animation: colorFlow 10s infinite alternate;
-        }
-
-        /* Puntos de luz en las esquinas para llenar el GUI */
-        .p1 { top: -10%; left: -10%; background: #ff00ff; }
-        .p2 { bottom: -10%; right: -10%; background: #00ffff; animation-delay: -5s; }
-        .p3 { top: 50%; left: 50%; transform: translate(-50%, -50%); background: #aa00ff; width: 80vw; }
-
-        @keyframes colorFlow {
-            0% { background: #ff0000; filter: hue-rotate(0deg); }
-            100% { background: #0000ff; filter: hue-rotate(360deg); }
-        }
-
-        @keyframes fullRotate {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2) rotate(10deg); }
-            100% { transform: scale(1); }
-        }
-
-        /* Burbujas */
-        .bubble {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 50%;
-            bottom: -100px;
-            animation: rise 12s infinite linear;
-            z-index: 1;
-        }
-
-        @keyframes rise {
-            0% { transform: translateY(0); opacity: 0; }
-            50% { opacity: 0.4; }
-            100% { transform: translateY(-120vh); opacity: 0; }
-        }
-
-        /* Texto Cursed */
-        .main-container {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-            z-index: 10;
-        }
-
-        h1 {
-            font-size: 8rem;
-            margin: 0;
-            color: white;
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: -10px;
-            background: linear-gradient(to bottom, #fff 40%, #888 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.3));
+            letter-spacing: 2px;
         }
 
-        /* Extraterrestres parpadeando */
-        .alien-icon {
-            font-size: 5rem;
-            color: #fff;
-            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
-            animation: alienFloat 4s ease-in-out infinite, blink 2s infinite;
+        .logo span {
+            color: var(--primary-color);
         }
 
-        @keyframes alienFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-30px); }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            font-weight: 600;
         }
 
-        @keyframes blink {
-            0%, 90% { opacity: 1; }
-            95% { opacity: 0.2; }
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .btn-download {
+            background-color: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-left: 20px;
+        }
+
+        .btn-download:hover {
+            background-color: var(--primary-color);
+            color: black;
+            box-shadow: 0 0 15px var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            background: radial-gradient(circle at center, rgba(0, 243, 255, 0.05) 0%, rgba(5, 5, 5, 1) 70%);
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .hero h1 span {
+            color: var(--primary-color);
+            text-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: black;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid white;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        /* Features Section (Tarjetas) */
+        .features {
+            padding: 80px 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            background-color: #080808;
+        }
+
+        .card {
+            background: #111;
+            padding: 30px;
+            border: 1px solid #222;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .card p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid #222;
+            color: var(--text-gray);
+            font-size: 0.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            nav { flex-direction: column; gap: 20px; }
+            .nav-links { margin-bottom: 20px; }
+            .hero-buttons { flex-direction: column; width: 100%; }
+            .btn-primary, .btn-secondary { width: 100%; text-align: center; }
         }
     </style>
 </head>
 <body>
 
-    <div class="ambient-canvas">
-        <div class="glow-point p1"></div>
-        <div class="glow-point p2"></div>
-        <div class="glow-point p3"></div>
-    </div>
+    <!-- Navegación -->
+    <nav>
+        <div class="logo">Cursed<span>Lov</span></div>
+        <div class="nav-links">
+            <a href="#inicio">Inicio</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#portafolio">Portafolio</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+        <a href="#" class="btn-download">Descargar Ahora</a>
+    </nav>
 
-    <!-- Burbujas -->
-    <div class="bubble" style="left: 5%; width: 40px; height: 40px;"></div>
-    <div class="bubble" style="left: 25%; width: 20px; height: 20px; animation-delay: 2s;"></div>
-    <div class="bubble" style="left: 75%; width: 60px; height: 60px; animation-delay: 4s;"></div>
+    <!-- Sección Principal (Hero) -->
+    <section class="hero" id="inicio">
+        <h1>Bienvenido a <br><span>CursedLov</span></h1>
+        <p>Optimización, rendimiento y estilo. Tu destino para herramientas tech de última generación. Diseñado para gamers y creadores.</p>
+        
+        <div class="hero-buttons">
+            <a href="#" class="btn-primary">Ver Proyectos</a>
+            <a href="#" class="btn-secondary">Sobre Nosotros</a>
+        </div>
+    </section>
 
-    <div class="main-container">
-        <i class="fas fa-user-astronaut alien-icon"></i>
-        <h1>Cursed</h1>
-        <i class="fas fa-user-astronaut alien-icon" style="animation-delay: 2s;"></i>
-    </div>
+    <!-- Características -->
+    <section class="features" id="servicios">
+        <div class="card">
+            <h3>⚡ Optimización</h3>
+            <p>Mejora el rendimiento de tu sistema con nuestras herramientas personalizadas. Limpieza profunda y ajustes de latencia.</p>
+        </div>
+        <div class="card">
+            <h3> Gaming Ready</h3>
+            <p>Configuraciones diseñadas específicamente para obtener los mejores FPS y la menor input lag en tus juegos favoritos.</p>
+        </div>
+        <div class="card">
+            <h3>🛠️ Soporte Directo</h3>
+            <p>Comunidad activa y soporte técnico directo para resolver cualquier duda sobre nuestros servicios y descargas.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 CursedLov. Todos los derechos reservados.</p>
+    </footer>
 
 </body>
 </html>
