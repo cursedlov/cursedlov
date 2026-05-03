@@ -10,7 +10,7 @@
             --bg-dark: #020204;
             --card-bg: #0a0a0f;
             --border-color: #1f2937;
-            --primary-cyan: #06b6d4; /* Azul Cyan estilo AntiLag */
+            --primary-cyan: #06b6d4; /* Azul Cyan estilo AntiLag - NO TOCAR */
             --primary-purple: #7c3aed;
             --text-white: #ffffff;
             --text-gray: #9ca3af;
@@ -35,13 +35,13 @@
             min-height: 100vh;
         }
 
-        /* Navbar Técnica */
+        /* Navbar Técnica Completa */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
             height: 70px;
-            background: rgba(2, 2, 4, 0.8);
+            background: rgba(2, 2, 4, 0.9);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
             display: flex;
@@ -131,7 +131,7 @@
             margin: 0 auto 40px;
         }
 
-        /* Grid de Apps Compacto (Estilo Widget) */
+        /* Grid de Apps Compacto */
         .apps-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -231,7 +231,7 @@
             border-color: var(--primary-cyan);
         }
 
-        /* Sección Performance Analysis (Estilo Minecraft/AntiLag) */
+        /* Sección Performance Analysis */
         .analysis-section {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -289,7 +289,7 @@
             font-size: 0.8rem;
             font-weight: bold;
             color: white;
-            width: 0; /* Animación */
+            width: 0;
             transition: width 1.5s ease-out;
         }
 
@@ -309,7 +309,7 @@
         .stat-value { font-size: 2rem; font-weight: 800; color: var(--success-green); }
         .stat-label { font-size: 0.8rem; color: var(--text-gray); text-transform: uppercase; }
 
-        /* Test Machine Specs (Estilo Imagen 4) */
+        /* Test Machine Specs */
         .specs-section {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -341,26 +341,139 @@
         .spec-info h4 { font-size: 0.8rem; color: var(--text-gray); text-transform: uppercase; }
         .spec-info p { font-size: 1.1rem; font-weight: bold; }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 40px;
-            border-top: 1px solid #111;
-            color: #555;
-            font-size: 0.8rem;
+        /* SECCIÓN RESEÑAS RESTAURADA */
+        .reviews-section {
+            margin-bottom: 100px;
         }
+        
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .review-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 25px;
+            border-left: 3px solid var(--primary-purple);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .user-avatar {
+            width: 40px; height: 40px; background: #111; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--primary-cyan);
+        }
+
+        .review-text {
+            font-size: 0.9rem;
+            color: #ccc;
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        .review-date {
+            font-size: 0.75rem;
+            color: #555;
+            margin-top: 10px;
+            display: block;
+        }
+
+        /* SECCIÓN AYUDA INSTAGRAM RESTAURADA */
+        .help-section {
+            text-align: center;
+            margin-bottom: 100px;
+            background: var(--card-bg);
+            padding: 50px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .ig-input-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .ig-input {
+            flex: 1;
+            background: #050505;
+            border: 1px solid #333;
+            padding: 15px;
+            border-radius: 8px;
+            color: white;
+            outline: none;
+        }
+
+        .ig-btn {
+            background: linear-gradient(45deg, #f09433, #bc1888);
+            border: none;
+            padding: 0 25px;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.2s;
+        }
+
+        .ig-btn:hover { transform: scale(1.05); }
+
+        /* Footer Completo */
+        footer {
+            background: #010102;
+            padding: 60px 5%;
+            border-top: 1px solid #111;
+            text-align: center;
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            padding: 10px 20px;
+            background: #0a0a0f;
+            border-radius: 50px;
+            border: 1px solid #222;
+        }
+
+        .badge i { color: var(--primary-cyan); }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
             .bars-container { grid-template-columns: 1fr; }
             .specs-section { grid-template-columns: 1fr; }
             .nav-links { display: none; }
+            .ig-input-group { flex-direction: column; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navbar -->
+    <!-- Navbar Completa -->
     <nav>
         <div class="logo">
             <i class="fas fa-ghost"></i> Cursed<span>Lov</span>
@@ -368,11 +481,13 @@
         <div class="nav-links">
             <a href="#tools">Tools</a>
             <a href="#analysis">Analysis</a>
-            <a href="#specs">Specs</a>
-            <a href="#contact">Support</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#help">Support</a>
         </div>
         <div class="social-nav">
             <a href="https://www.instagram.com/cursedlov_/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@cursedlov3r" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://open.spotify.com/user/31syapaq64qsonkvntuyx5abghke" target="_blank"><i class="fab fa-spotify"></i></a>
             <a href="mailto:cursedlov@gmail.com"><i class="fas fa-envelope"></i></a>
         </div>
     </nav>
@@ -386,7 +501,7 @@
             <p>Extract every frame from your hardware. Professional optimization tools for gamers and creators.</p>
         </section>
 
-        <!-- Apps Grid (Compact) -->
+        <!-- Apps Grid -->
         <section id="tools">
             <h2>Download <span>Tools</span></h2>
             <div class="apps-grid">
@@ -454,7 +569,7 @@
             </div>
         </section>
 
-        <!-- Performance Analysis (Estilo Minecraft) -->
+        <!-- Performance Analysis -->
         <section id="analysis" class="analysis-section">
             <div class="analysis-header">
                 <div class="game-info">
@@ -544,23 +659,69 @@
                 <i class="fas fa-shield-alt" style="font-size: 3rem; color: var(--success-green); margin-bottom: 20px;"></i>
                 <h3>Verified Safe</h3>
                 <p style="color: #666; margin-top: 10px;">All tools are scanned and verified. No malware, no bloatware. Just pure performance.</p>
-                <a href="#contact" class="btn-download" style="width: auto; padding: 10px 30px; margin-top: 20px; background: var(--primary-cyan); color: black; border: none;">Contact Support</a>
+                <a href="#help" class="btn-download" style="width: auto; padding: 10px 30px; margin-top: 20px; background: var(--primary-cyan); color: black; border: none;">Contact Support</a>
             </div>
         </section>
 
-        <!-- Contacto Simple -->
-        <section id="contact" style="text-align: center; padding: 50px 0;">
+        <!-- SECCIÓN RESEÑAS RESTAURADA -->
+        <section id="reviews" class="reviews-section">
+            <h2>User <span>Reviews</span></h2>
+            <div class="review-grid">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="user-avatar">G</div>
+                        <div>
+                            <div style="font-weight:bold;">gonza</div>
+                            <div class="review-date">17/02/2026</div>
+                        </div>
+                    </div>
+                    <p class="review-text">"servicio y trato 10/10... empezó a tardar menos de 10 sg en prender... 10/10 los mejores ❤️"</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="user-avatar">B</div>
+                        <div>
+                            <div style="font-weight:bold;">Byppas</div>
+                            <div class="review-date">22/02/2026</div>
+                        </div>
+                    </div>
+                    <p class="review-text">"El Servicio y la optimizacion fue una elegancia... mi pc va a 200 fps estables... optimizacion= 10/10"</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="user-avatar">L</div>
+                        <div>
+                            <div style="font-weight:bold;">lpzzt</div>
+                            <div class="review-date">21/02/2026</div>
+                        </div>
+                    </div>
+                    <p class="review-text">"Servicio de los mejores que eh visto... mi pc ahora prende en menos de 5s... Optimización 11/10"</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN AYUDA INSTAGRAM RESTAURADA -->
+        <section id="help" class="help-section">
             <h2>Need <span>Help?</span></h2>
-            <p style="color: #666; margin-bottom: 30px;">Direct support via Instagram DM.</p>
-            <a href="https://www.instagram.com/cursedlov_/" target="_blank" class="btn-download" style="display: inline-block; width: auto; padding: 15px 40px; background: linear-gradient(45deg, #f09433, #bc1888); border: none;">
-                <i class="fab fa-instagram"></i> Send Message
-            </a>
+            <p style="color: #666; margin-bottom: 20px;">Type your question below and send it directly to my Instagram DM.</p>
+            <div class="ig-input-group">
+                <input type="text" class="ig-input" placeholder="Write your doubt here...">
+                <a href="https://www.instagram.com/cursedlov_/" target="_blank" class="ig-btn">
+                    <i class="fab fa-instagram"></i> Send
+                </a>
+            </div>
         </section>
 
     </div>
 
+    <!-- Footer Completo -->
     <footer>
-        <p>&copy; 2026 CursedLov. All rights reserved.</p>
+        <div class="trust-badges">
+            <div class="badge"><i class="fas fa-check-circle"></i> Verified Developer</div>
+            <div class="badge"><i class="fas fa-shield-alt"></i> Safe & Secure</div>
+            <div class="badge"><i class="fas fa-users"></i> Community Trusted</div>
+        </div>
+        <p style="color:#555; font-size:0.8rem;">&copy; 2026 CursedLov. All rights reserved.</p>
     </footer>
 
     <script>
