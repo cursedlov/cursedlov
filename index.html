@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CursedLov | Optimización & Tools</title>
+    <title>CursedLov | Cursed Tools</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --bg-dark: #050505;
-            --bg-card: #0f0f0f;
-            --primary-purple: #7c3aed; /* Morado oscuro vibrante */
-            --accent-purple: #a855f7;
+            --bg-card: #0a0a0a;
+            --primary-purple: #7c3aed;
+            --neon-glow: #a855f7;
             --text-white: #ffffff;
             --text-gray: #9ca3af;
-            --glass-border: rgba(124, 58, 237, 0.2);
+            --glass-border: rgba(124, 58, 237, 0.3);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif; /* Fuente limpia */
+            font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
         }
 
@@ -28,12 +28,11 @@
             background-color: var(--bg-dark);
             color: var(--text-white);
             overflow-x: hidden;
-            /* Fondo sutil con degradado oscuro */
             background-image: radial-gradient(circle at 50% 0%, #1a0b2e 0%, #050505 60%);
             min-height: 100vh;
         }
 
-        /* Navbar Flotante Estilo Cápsula */
+        /* Navbar Flotante */
         nav {
             position: fixed;
             top: 20px;
@@ -42,8 +41,8 @@
             width: 90%;
             max-width: 1000px;
             height: 60px;
-            background: rgba(20, 20, 20, 0.8);
-            backdrop-filter: blur(15px);
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             border-radius: 50px;
             display: flex;
@@ -51,7 +50,7 @@
             align-items: center;
             padding: 0 25px;
             z-index: 1000;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.1);
         }
 
         .logo {
@@ -64,41 +63,31 @@
             gap: 10px;
         }
 
-        .logo i { color: var(--accent-purple); }
+        .logo i { color: var(--neon-glow); text-shadow: 0 0 10px var(--primary-purple); }
 
-        .nav-center {
-            display: flex;
-            gap: 25px;
-        }
-
+        .nav-center { display: flex; gap: 25px; }
         .nav-center a {
             color: var(--text-gray);
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: all 0.3s;
         }
+        .nav-center a:hover { color: white; text-shadow: 0 0 10px var(--neon-glow); }
 
-        .nav-center a:hover { color: white; }
-
-        .social-nav {
-            display: flex;
-            gap: 15px;
-        }
-
+        .social-nav { display: flex; gap: 15px; }
         .social-nav a {
             color: var(--text-gray);
             font-size: 1.1rem;
             transition: all 0.3s;
         }
-
         .social-nav a:hover {
-            color: var(--accent-purple);
-            transform: translateY(-2px);
-            text-shadow: 0 0 10px var(--primary-purple);
+            color: var(--neon-glow);
+            transform: scale(1.2);
+            text-shadow: 0 0 15px var(--primary-purple);
         }
 
-        /* Secciones Generales */
+        /* Secciones */
         section {
             padding: 120px 5% 80px;
             max-width: 1200px;
@@ -106,12 +95,13 @@
         }
 
         h2 {
-            font-size: 2.5rem;
-            margin-bottom: 50px;
+            font-size: 3rem;
+            margin-bottom: 60px;
             text-align: center;
-            background: linear-gradient(to right, #fff, var(--accent-purple));
+            background: linear-gradient(to right, #fff, var(--neon-glow));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(124, 58, 237, 0.3);
         }
 
         /* Hero Section */
@@ -122,43 +112,62 @@
         }
 
         .hero h1 {
-            font-size: 4rem;
-            font-weight: 800;
+            font-size: 5rem;
+            font-weight: 900;
             margin-bottom: 20px;
             line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        .hero h1 span {
+            color: var(--neon-glow);
+            text-shadow: 0 0 40px var(--primary-purple);
         }
 
         .hero p {
             color: var(--text-gray);
-            font-size: 1.2rem;
-            max-width: 600px;
+            font-size: 1.3rem;
+            max-width: 700px;
             margin: 0 auto 40px;
+            line-height: 1.6;
         }
 
-        /* Grid de Apps (Estilo Launcher) */
+        /* Grid de Apps */
         .apps-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
         }
 
         .app-card {
             background: var(--bg-card);
             border: 1px solid #222;
-            border-radius: 16px;
-            padding: 25px;
-            transition: all 0.3s ease;
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
             display: flex;
             flex-direction: column;
         }
 
+        /* Efecto de Brillo Intenso al Hover */
         .app-card:hover {
-            border-color: var(--primary-purple);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.15);
+            border-color: var(--neon-glow);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(124, 58, 237, 0.3), 0 0 20px rgba(168, 85, 247, 0.2);
         }
+
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(124, 58, 237, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .app-card:hover::before { opacity: 1; }
 
         .app-header {
             display: flex;
@@ -168,133 +177,182 @@
         }
 
         .app-icon {
-            width: 50px;
-            height: 50px;
-            background: #1a1a1a;
-            border-radius: 12px;
+            width: 60px;
+            height: 60px;
+            background: #151515;
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            color: var(--accent-purple);
+            font-size: 1.8rem;
+            color: var(--neon-glow);
+            border: 1px solid #333;
+            transition: all 0.3s;
         }
 
-        .app-title h3 { font-size: 1.2rem; margin-bottom: 5px; }
-        .app-title span { font-size: 0.8rem; color: var(--text-gray); text-transform: uppercase; letter-spacing: 1px; }
+        .app-card:hover .app-icon {
+            background: var(--primary-purple);
+            color: white;
+            box-shadow: 0 0 20px var(--primary-purple);
+            border-color: var(--neon-glow);
+        }
+
+        .app-title h3 { font-size: 1.4rem; margin-bottom: 5px; color: white; }
+        .app-title span { font-size: 0.8rem; color: var(--neon-glow); text-transform: uppercase; letter-spacing: 1px; font-weight: bold; }
 
         .app-desc {
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: #ccc;
             margin-bottom: 20px;
-            line-height: 1.5;
+            line-height: 1.6;
             flex-grow: 1;
         }
 
         .lang-tag {
             font-size: 0.75rem;
-            color: var(--accent-purple);
+            color: #666;
             margin-bottom: 15px;
             font-weight: bold;
+            letter-spacing: 1px;
         }
 
         .password-warning {
-            background: rgba(124, 58, 237, 0.1);
-            border: 1px dashed var(--primary-purple);
-            padding: 10px;
-            border-radius: 8px;
+            background: rgba(124, 58, 237, 0.15);
+            border: 1px dashed var(--neon-glow);
+            padding: 12px;
+            border-radius: 10px;
             margin-bottom: 20px;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: #d8b4fe;
             text-align: center;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(124, 58, 237, 0.2);
         }
 
         .btn-download {
             display: block;
             width: 100%;
-            padding: 12px;
-            background: #222;
+            padding: 15px;
+            background: #1a1a1a;
             color: white;
             text-align: center;
             text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
+            border-radius: 12px;
+            font-weight: 700;
             transition: all 0.3s;
             border: 1px solid #333;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .btn-download:hover {
             background: var(--primary-purple);
-            border-color: var(--primary-purple);
-            box-shadow: 0 0 15px rgba(124, 58, 237, 0.4);
+            border-color: var(--neon-glow);
+            box-shadow: 0 0 25px var(--primary-purple);
+            transform: scale(1.02);
         }
 
-        /* Servicios Texto */
+        /* Servicios Persuasivos */
         .services-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            gap: 50px;
+        }
+
+        .service-item {
+            background: rgba(255,255,255,0.02);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .service-item:hover {
+            border-color: var(--glass-border);
+            background: rgba(124, 58, 237, 0.05);
         }
 
         .service-item h3 {
-            color: var(--accent-purple);
-            margin-bottom: 15px;
-            font-size: 1.3rem;
+            color: var(--neon-glow);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .service-item p {
             color: var(--text-gray);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 10px;
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 15px;
         }
 
         .multi-lang-text {
-            font-size: 0.85rem;
-            color: #666;
+            font-size: 0.8rem;
+            color: #555;
             border-left: 2px solid var(--primary-purple);
             padding-left: 10px;
             margin-top: 10px;
+            font-style: italic;
         }
 
-        /* Aide / Contacto IG */
+        /* Aide / Contacto Mejorado */
         .contact-box {
             background: var(--bg-card);
             border: 1px solid #222;
-            border-radius: 20px;
-            padding: 40px;
-            max-width: 600px;
+            border-radius: 25px;
+            padding: 50px;
+            max-width: 700px;
             margin: 0 auto;
             text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
         .ig-input-group {
             display: flex;
-            gap: 10px;
-            margin-top: 20px;
+            gap: 15px;
+            margin-top: 30px;
+            position: relative;
         }
 
         .ig-input {
             flex: 1;
             background: #050505;
-            border: 1px solid #333;
-            padding: 15px;
-            border-radius: 10px;
+            border: 2px solid #333;
+            padding: 18px;
+            border-radius: 15px;
             color: white;
             outline: none;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .ig-input:focus {
+            border-color: var(--neon-glow);
+            box-shadow: 0 0 15px rgba(124, 58, 237, 0.3);
         }
 
         .ig-btn {
             background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
             border: none;
-            padding: 0 25px;
-            border-radius: 10px;
+            padding: 0 30px;
+            border-radius: 15px;
             color: white;
             cursor: pointer;
             font-weight: bold;
-            transition: transform 0.2s;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 0 20px rgba(220, 39, 67, 0.4);
         }
 
-        .ig-btn:hover { transform: scale(1.05); }
+        .ig-btn:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 0 30px rgba(220, 39, 67, 0.6);
+        }
 
         footer {
             text-align: center;
@@ -304,28 +362,27 @@
             border-top: 1px solid #111;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             nav { width: 95%; padding: 0 15px; }
-            .nav-center { display: none; } /* Ocultar links centrales en móvil */
-            .hero h1 { font-size: 2.5rem; }
+            .nav-center { display: none; }
+            .hero h1 { font-size: 3rem; }
             .ig-input-group { flex-direction: column; }
-            .ig-btn { padding: 15px; }
+            .ig-btn { padding: 18px; justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navbar Flotante -->
+    <!-- Navbar -->
     <nav>
         <div class="logo">
             <i class="fas fa-ghost"></i> CursedLov
         </div>
         <div class="nav-center">
-            <a href="#inicio">Inicio</a>
-            <a href="#apps">Apps</a>
-            <a href="#servicios">Servicios</a>
-            <a href="#aide">Ayuda</a>
+            <a href="#inicio">Home</a>
+            <a href="#apps">Tools</a>
+            <a href="#servicios">Why Us</a>
+            <a href="#aide">Support</a>
         </div>
         <div class="social-nav">
             <a href="https://www.instagram.com/cursedlov_/" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -337,34 +394,34 @@
 
     <!-- Hero -->
     <section id="inicio" class="hero">
-        <h1>Tu PC, <span style="color:var(--accent-purple)">Máximo Rendimiento</span></h1>
-        <p>Herramientas exclusivas de optimización, limpieza y seguridad. Diseñado para gamers y creadores.</p>
-        <a href="#apps" class="btn-download" style="display:inline-block; width:auto; padding: 15px 40px; background: var(--primary-purple); border:none;">Ver Herramientas</a>
+        <h1>Cursed <span>Tools</span></h1>
+        <p>We help everyone optimize their digital experience. From gaming performance to system cleanup, we provide the tools you need to stay ahead.</p>
+        <a href="#apps" class="btn-download" style="display:inline-block; width:auto; padding: 18px 50px; background: var(--primary-purple); border:none; box-shadow: 0 0 30px var(--primary-purple);">Explore Tools</a>
     </section>
 
     <!-- Aplicaciones -->
     <section id="apps">
-        <h2>Descargas</h2>
+        <h2>Downloads</h2>
         <div class="apps-grid">
             
-            <!-- App 1: Limpiador -->
+            <!-- App 1 -->
             <div class="app-card">
                 <div class="app-header">
                     <div class="app-icon"><i class="fas fa-broom"></i></div>
                     <div class="app-title">
                         <h3>Uninstaller Pro</h3>
-                        <span>Limpieza</span>
+                        <span>Cleanup</span>
                     </div>
                 </div>
-                <div class="lang-tag">ES / EN / PT / FR</div>
+                <div class="lang-tag">EN / ES / PT / FR</div>
                 <p class="app-desc">
-                    Elimina programas residuales y archivos basura que ralentizan tu sistema. Limpieza profunda en un clic.
-                    <br><small style="color:#666">Remove residual programs and junk files. Deep cleaning in one click.</small>
+                    Remove residual programs and junk files that slow down your system. Deep cleaning in one click.
+                    <br><small style="color:#666">ES: Limpieza profunda. PT: Limpeza profunda. FR: Nettoyage profond.</small>
                 </p>
-                <a href="https://www.mediafire.com/file/8f9guq3r6dw41xg/Eliminar+Programas.exe/file" target="_blank" class="btn-download">Descargar Ahora</a>
+                <a href="https://www.mediafire.com/file/8f9guq3r6dw41xg/Eliminar+Programas.exe/file" target="_blank" class="btn-download">Download Now</a>
             </div>
 
-            <!-- App 2: KFC (Ping) -->
+            <!-- App 2 -->
             <div class="app-card">
                 <div class="app-header">
                     <div class="app-icon"><i class="fas fa-gamepad"></i></div>
@@ -373,15 +430,15 @@
                         <span>Gaming / Ping</span>
                     </div>
                 </div>
-                <div class="lang-tag">ES / EN / PT / FR</div>
+                <div class="lang-tag">EN / ES / PT / FR</div>
                 <p class="app-desc">
-                    Reduce tu latencia y mejora la estabilidad de red. Ideal para shooters y juegos competitivos.
-                    <br><small style="color:#666">Reduce latency and improve network stability. Ideal for competitive gaming.</small>
+                    Reduce latency and improve network stability. Ideal for competitive shooters and low-end PCs.
+                    <br><small style="color:#666">ES: Reduce lag. PT: Reduz lag. FR: Réduit le lag.</small>
                 </p>
-                <a href="https://www.mediafire.com/file/l8cl8vncn0m3zvc/KFC.exe/file" target="_blank" class="btn-download">Descargar Ahora</a>
+                <a href="https://www.mediafire.com/file/l8cl8vncn0m3zvc/KFC.exe/file" target="_blank" class="btn-download">Download Now</a>
             </div>
 
-            <!-- App 3: Spoiler NG (Con Contraseña) -->
+            <!-- App 3 -->
             <div class="app-card" style="border-color: var(--primary-purple);">
                 <div class="app-header">
                     <div class="app-icon"><i class="fas fa-microchip"></i></div>
@@ -391,13 +448,13 @@
                     </div>
                 </div>
                 <div class="password-warning">
-                    <i class="fas fa-lock"></i> CONTRASEÑA: <strong>NGTEAM</strong>
+                    <i class="fas fa-lock"></i> PASSWORD: <strong>NGTEAM</strong>
                 </div>
                 <p class="app-desc">
-                    Optimizador avanzado de CPU y RAM. Libera el máximo potencial de tu hardware.
-                    <br><small style="color:#666">Advanced CPU/RAM optimizer. Unlock your hardware's full potential.</small>
+                    Advanced CPU & RAM optimizer. Unlock your hardware's full potential for maximum FPS.
+                    <br><small style="color:#666">ES: Máximo potencial. PT: Potencial máximo. FR: Potentiel maximal.</small>
                 </p>
-                <a href="https://www.mediafire.com/file/fi4uo043112u4j3/SPOILER_NG+Optimizer.exe/file" target="_blank" class="btn-download">Descargar Ahora</a>
+                <a href="https://www.mediafire.com/file/fi4uo043112u4j3/SPOILER_NG+Optimizer.exe/file" target="_blank" class="btn-download">Download Now</a>
             </div>
 
         </div>
@@ -405,53 +462,53 @@
 
     <!-- Servicios -->
     <section id="servicios">
-        <h2>Por Qué Elegirnos</h2>
+        <h2>Why Choose Us?</h2>
         <div class="services-container">
             <div class="service-item">
-                <h3><i class="fas fa-tachometer-alt"></i> Optimización Real</h3>
-                <p>Ajustes precisos en el registro y servicios de Windows para ganar FPS estables.</p>
+                <h3><i class="fas fa-tachometer-alt"></i> Real Performance</h3>
+                <p>We don't just clean; we optimize. Our tools are tested to ensure stable FPS gains and smoother gameplay without breaking your system.</p>
                 <div class="multi-lang-text">
-                    ES: Gana FPS estables.<br>EN: Gain stable FPS.<br>PT: Ganhe FPS estável.<br>FR: Gagnez des FPS stables.
+                    ES: Ganancia estable de FPS.<br>PT: Ganho estável de FPS.<br>FR: Gain de FPS stable.
                 </div>
             </div>
             <div class="service-item">
-                <h3><i class="fas fa-shield-virus"></i> Seguridad Garantizada</h3>
-                <p>Nuestros archivos son escaneados y libres de malware. Tu privacidad es primero.</p>
+                <h3><i class="fas fa-shield-virus"></i> Safe & Secure</h3>
+                <p>Your privacy is our priority. All our tools are scanned and free from malware. We provide safe tweaks that won't harm your Windows installation.</p>
                 <div class="multi-lang-text">
-                    ES: Libre de malware.<br>EN: Malware free.<br>PT: Livre de malware.<br>FR: Sans malware.
+                    ES: Libre de malware.<br>PT: Livre de malware.<br>FR: Sans malware.
                 </div>
             </div>
             <div class="service-item">
-                <h3><i class="fas fa-cloud-upload-alt"></i> Cloud & Soporte</h3>
-                <p>Actualizaciones constantes y soporte directo para asegurar que tu PC siempre vuele.</p>
+                <h3><i class="fas fa-users"></i> Community Driven</h3>
+                <p>We listen to our users. Our tools are updated regularly based on community feedback to solve the most common PC issues.</p>
                 <div class="multi-lang-text">
-                    ES: Soporte directo.<br>EN: Direct support.<br>PT: Suporte direto.<br>FR: Support direct.
+                    ES: Soporte directo.<br>PT: Suporte direto.<br>FR: Support direct.
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Aide / Contacto -->
+    <!-- Aide -->
     <section id="aide">
-        <h2>¿Tienes Dudas?</h2>
+        <h2>Need Help?</h2>
         <div class="contact-box">
-            <p style="color: #ccc; margin-bottom: 20px;">
-                Escribe tu pregunta abajo. Te responderé directamente por Instagram DM.
+            <p style="color: #ccc; margin-bottom: 20px; font-size: 1.1rem;">
+                Have a question or an issue? Type it below and I'll answer you directly via Instagram DM.
             </p>
             <div class="ig-input-group">
-                <input type="text" class="ig-input" placeholder="Escribe tu duda aquí...">
+                <input type="text" class="ig-input" placeholder="Type your question here...">
                 <a href="https://www.instagram.com/cursedlov_/" target="_blank" class="ig-btn">
-                    <i class="fab fa-instagram"></i> Enviar
+                    <i class="fab fa-instagram"></i> Send Message
                 </a>
             </div>
-            <p style="font-size: 0.8rem; color: #555; margin-top: 15px;">
-                *Al hacer clic, se abrirá tu chat directo con @cursedlov_
+            <p style="font-size: 0.8rem; color: #555; margin-top: 20px;">
+                *Clicking "Send Message" will open your direct chat with @cursedlov_
             </p>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 CursedLov. Todos los derechos reservados.</p>
+        <p>&copy; 2026 CursedLov. All rights reserved.</p>
     </footer>
 
 </body>
