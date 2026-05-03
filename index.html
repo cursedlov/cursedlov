@@ -4,17 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CursedLov | L'Expérience Ultime</title>
-    <!-- Iconos de FontAwesome para redes sociales -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-purple: #8a2be2;
+            --neon-purple: #b026ff;
             --neon-pink: #ff00ff;
-            --deep-purple: #4b0082;
-            --dark-bg: #050505;
-            --glass-bg: rgba(20, 20, 20, 0.7);
+            --deep-blue: #0f0c29;
+            --glass-bg: rgba(255, 255, 255, 0.05);
             --text-white: #ffffff;
-            --text-gray: #b0b0b0;
         }
 
         * {
@@ -26,13 +23,12 @@
         }
 
         body {
-            background-color: var(--dark-bg);
             color: var(--text-white);
             overflow-x: hidden;
-            /* Fondo RGB Morado Animado */
-            background: linear-gradient(-45deg, #050505, #1a0b2e, #2d0036, #000000);
+            /* Fondo RGB Animado */
+            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #4b0082, #800080);
             background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            animation: gradientBG 20s ease infinite;
         }
 
         @keyframes gradientBG {
@@ -41,70 +37,42 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Burbujas de fondo animadas */
-        .bubble {
-            position: absolute;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(138, 43, 226, 0.2) 0%, rgba(0,0,0,0) 70%);
-            z-index: -1;
-            animation: floatBubble 10s infinite ease-in-out;
-        }
-
-        .bubble:nth-child(1) { width: 300px; height: 300px; top: 10%; left: 10%; animation-duration: 12s; }
-        .bubble:nth-child(2) { width: 500px; height: 500px; bottom: 20%; right: 10%; animation-duration: 15s; animation-delay: 2s; }
-        .bubble:nth-child(3) { width: 200px; height: 200px; top: 40%; right: 30%; animation-duration: 9s; animation-delay: 1s; }
-
-        @keyframes floatBubble {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-20px) scale(1.1); }
-        }
-
-        /* Navbar */
+        /* Navbar Compacta */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 5%;
+            padding: 10px 5%; /* Más chiquita */
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(176, 38, 255, 0.2);
         }
 
         .nav-container {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
         }
 
-        /* Logo Circular Animado */
-        .logo-img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid transparent;
-            background: linear-gradient(var(--dark-bg), var(--dark-bg)) padding-box,
-                        linear-gradient(45deg, var(--primary-purple), var(--neon-pink), var(--primary-purple)) border-box;
-            animation: spinBorder 4s linear infinite, floatLogo 3s ease-in-out infinite;
-            box-shadow: 0 0 15px var(--primary-purple);
+        /* Logo Marciano Animado */
+        .alien-logo {
+            font-size: 1.8rem;
+            color: var(--neon-pink);
+            text-shadow: 0 0 15px var(--neon-purple);
+            animation: floatAlien 3s ease-in-out infinite;
         }
 
-        @keyframes spinBorder {
-            0% { filter: hue-rotate(0deg); }
-            100% { filter: hue-rotate(360deg); }
-        }
-
-        @keyframes floatLogo {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
+        @keyframes floatAlien {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(5deg); }
         }
 
         .logo-text {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -115,35 +83,35 @@
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 20px;
         }
 
         .nav-links a {
-            color: var(--text-gray);
+            color: rgba(255,255,255,0.7);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 600;
             text-transform: uppercase;
             transition: all 0.3s;
-            position: relative;
         }
 
         .nav-links a:hover {
             color: var(--neon-pink);
-            text-shadow: 0 0 10px var(--primary-purple);
+            text-shadow: 0 0 10px var(--neon-purple);
         }
 
         .btn-action {
-            background: linear-gradient(45deg, var(--primary-purple), var(--neon-pink));
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink));
             color: white;
-            padding: 10px 25px;
-            border-radius: 30px;
+            padding: 8px 20px;
+            border-radius: 20px;
             text-decoration: none;
             font-weight: bold;
+            font-size: 0.85rem;
             border: none;
             cursor: pointer;
             transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 0 15px rgba(138, 43, 226, 0.4);
+            box-shadow: 0 0 15px rgba(176, 38, 255, 0.4);
         }
 
         .btn-action:hover {
@@ -151,58 +119,30 @@
             box-shadow: 0 0 25px rgba(255, 0, 255, 0.6);
         }
 
-        /* Secciones Generales */
+        /* Secciones de Pantalla Completa */
         section {
-            padding: 100px 5%;
-            min-height: 80vh;
+            min-height: 100vh; /* Ocupa toda la pantalla */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            padding: 80px 5%;
             position: relative;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
         h2 {
-            font-size: 3rem;
-            margin-bottom: 50px;
+            font-size: 3.5rem;
+            margin-bottom: 60px;
             text-transform: uppercase;
             text-align: center;
-            background: linear-gradient(to right, #fff, var(--primary-purple));
+            background: linear-gradient(to right, #fff, var(--neon-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(176, 38, 255, 0.3);
         }
 
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 5rem;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            font-weight: 900;
-        }
-
-        .hero h1 span {
-            display: block;
-            font-size: 2rem;
-            color: var(--neon-pink);
-            letter-spacing: 5px;
-            margin-bottom: 10px;
-            text-shadow: 0 0 20px var(--primary-purple);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-gray);
-            max-width: 600px;
-            margin-bottom: 40px;
-        }
-
-        /* Tarjetas Glassmorphism */
+        /* Tarjetas Animadas */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -212,77 +152,85 @@
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--glass-bg);
             padding: 40px;
             border-radius: 20px;
-            border: 1px solid rgba(138, 43, 226, 0.2);
-            backdrop-filter: blur(5px);
-            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efecto rebote suave */
+            position: relative;
+            overflow: hidden;
         }
 
         .card:hover {
-            transform: translateY(-10px);
+            transform: scale(1.05) translateY(-10px); /* Se hace grande */
             border-color: var(--neon-pink);
-            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.3);
+            box-shadow: 0 20px 40px rgba(176, 38, 255, 0.4);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--neon-pink);
+        }
+
+        .card p {
+            color: rgba(255,255,255,0.8);
+            line-height: 1.6;
         }
 
         /* Footer con Redes Sociales */
         footer {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 50px 5%;
-            border-top: 1px solid rgba(138, 43, 226, 0.2);
+            background: rgba(0, 0, 0, 0.4);
+            padding: 40px 5%;
             text-align: center;
+            border-top: 1px solid rgba(176, 38, 255, 0.2);
         }
 
         .social-icons {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin-bottom: 30px;
+            gap: 40px;
+            margin-bottom: 20px;
         }
 
         .social-link {
             color: white;
-            font-size: 2rem;
+            font-size: 2.5rem;
             transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .social-link::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            width: 100%;
-            height: 100%;
-            background: var(--primary-purple);
-            border-radius: 50%;
-            z-index: -1;
-            transition: transform 0.3s ease;
-            opacity: 0.5;
+            filter: drop-shadow(0 0 5px var(--neon-purple));
         }
 
         .social-link:hover {
             color: var(--neon-pink);
-            transform: translateY(-5px);
-            text-shadow: 0 0 20px var(--primary-purple);
+            transform: scale(1.2) rotate(10deg);
+            filter: drop-shadow(0 0 15px var(--neon-pink));
         }
 
-        .social-link:hover::before {
-            transform: translate(-50%, -50%) scale(1.5);
+        /* Burbujas de fondo */
+        .bubble {
+            position: fixed;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(176, 38, 255, 0.15) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+            animation: floatBubble 15s infinite ease-in-out;
+            pointer-events: none;
         }
 
-        .footer-text {
-            color: var(--text-gray);
-            font-size: 0.9rem;
+        .bubble:nth-child(1) { width: 400px; height: 400px; top: 10%; left: -10%; animation-duration: 20s; }
+        .bubble:nth-child(2) { width: 600px; height: 600px; bottom: 10%; right: -10%; animation-duration: 25s; animation-delay: 2s; }
+        
+        @keyframes floatBubble {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, -50px); }
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
-            nav { flex-direction: column; padding: 20px; gap: 15px; }
-            .nav-links { gap: 15px; font-size: 0.8rem; flex-wrap: wrap; justify-content: center; }
+            h2 { font-size: 2.5rem; }
+            nav { padding: 10px 20px; }
+            .nav-links { display: none; } /* Ocultar menú en móvil simple por ahora */
             .social-icons { gap: 20px; }
         }
     </style>
@@ -292,13 +240,11 @@
     <!-- Burbujas de fondo -->
     <div class="bubble"></div>
     <div class="bubble"></div>
-    <div class="bubble"></div>
 
-    <!-- Navegación -->
+    <!-- Navegación Compacta -->
     <nav>
         <div class="nav-container">
-            <!-- REEMPLAZA 'logo.png' CON EL NOMBRE DE TU IMAGEN REAL -->
-            <img src="https://via.placeholder.com/150/8a2be2/ffffff?text=C" alt="Logo CursedLov" class="logo-img">
+            <div class="alien-logo"></div>
             <div class="logo-text">Cursed<span>Lov</span></div>
         </div>
         <div class="nav-links">
@@ -310,17 +256,15 @@
         <a href="#contact" class="btn-action">Rejoindre</a>
     </nav>
 
-    <!-- Accueil (Inicio) -->
-    <section id="accueil" class="hero">
-        <h1>
-            <span>Bienvenue dans le</span>
-            CursedLov
+    <!-- Accueil -->
+    <section id="accueil">
+        <h1 style="font-size: 5rem; text-align: center; margin-bottom: 20px; text-transform: uppercase;">
+            Cursed<span style="color:var(--neon-pink)">Lov</span>
         </h1>
-        <p>Plongez dans l'univers digital. Optimisation, outils exclusifs et une expérience utilisateur conçue pour les initiés.</p>
-        <div class="hero-buttons">
-            <a href="#apps" class="btn-action">Voir les Apps</a>
-            <a href="#services" class="btn-action" style="background: transparent; border: 2px solid var(--neon-pink);">Nos Services</a>
-        </div>
+        <p style="font-size: 1.2rem; color: rgba(255,255,255,0.7); max-width: 600px; text-align: center; margin-bottom: 40px;">
+            L'univers digital ultime. Optimisation, outils et communauté.
+        </p>
+        <a href="#apps" class="btn-action" style="padding: 15px 40px; font-size: 1rem;">Explorer</a>
     </section>
 
     <!-- Services -->
@@ -328,15 +272,15 @@
         <h2>Nos Services</h2>
         <div class="grid-container">
             <div class="card">
-                <h3><i class="fas fa-bolt" style="color:var(--neon-pink)"></i> Optimisation</h3>
+                <h3><i class="fas fa-bolt"></i> Optimisation</h3>
                 <p>Améliorez les performances de votre système avec nos outils de nettoyage profond.</p>
             </div>
             <div class="card">
-                <h3><i class="fas fa-shield-alt" style="color:var(--neon-pink)"></i> Sécurité</h3>
+                <h3><i class="fas fa-shield-alt"></i> Sécurité</h3>
                 <p>Protection avancée contre les menaces numériques pour une navigation tranquille.</p>
             </div>
             <div class="card">
-                <h3><i class="fas fa-cloud" style="color:var(--neon-pink)"></i> Cloud</h3>
+                <h3><i class="fas fa-cloud"></i> Cloud</h3>
                 <p>Solutions de stockage et synchronisation rapides et sécurisées.</p>
             </div>
         </div>
@@ -353,6 +297,10 @@
             <div class="card">
                 <h3>🎮 Gaming Suite</h3>
                 <p>Outils conçus pour les gamers. Boostez vos FPS et réduisez l'input lag.</p>
+            </div>
+            <div class="card">
+                <h3>🎨 Custom UI</h3>
+                <p>Personnalisez votre interface Windows avec nos thèmes exclusifs sombres.</p>
             </div>
         </div>
     </section>
@@ -372,23 +320,15 @@
         </div>
     </section>
 
-    <!-- Footer con Redes Sociales -->
+    <!-- Footer -->
     <footer id="contact">
         <div class="social-icons">
-            <a href="https://www.instagram.com/cursedlov_/" target="_blank" class="social-link" title="Instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://www.youtube.com/@cursedlov3r" target="_blank" class="social-link" title="YouTube">
-                <i class="fab fa-youtube"></i>
-            </a>
-            <a href="https://open.spotify.com/user/31syapaq64qsonkvntuyx5abghke" target="_blank" class="social-link" title="Spotify">
-                <i class="fab fa-spotify"></i>
-            </a>
-            <a href="mailto:cursedlov@gmail.com" class="social-link" title="Email">
-                <i class="fas fa-envelope"></i>
-            </a>
+            <a href="https://www.instagram.com/cursedlov_/" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@cursedlov3r" target="_blank" class="social-link"><i class="fab fa-youtube"></i></a>
+            <a href="https://open.spotify.com/user/31syapaq64qsonkvntuyx5abghke" target="_blank" class="social-link"><i class="fab fa-spotify"></i></a>
+            <a href="mailto:cursedlov@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
         </div>
-        <p class="footer-text">&copy; 2026 CursedLov. Tous droits réservés. | Fait avec passion 💜</p>
+        <p style="color: rgba(255,255,255,0.5); font-size: 0.9rem;">&copy; 2026 CursedLov. Tous droits réservés.</p>
     </footer>
 
 </body>
