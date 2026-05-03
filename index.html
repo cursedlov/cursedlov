@@ -8,117 +8,117 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&display=swap');
 
-        :root {
-            --bg: #020202;
-            --accent: #a855f7;
-        }
-
         body {
-            background-color: var(--bg);
             margin: 0;
+            padding: 0;
+            background-color: #020202;
             overflow: hidden;
             font-family: 'Syncopate', sans-serif;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
-            /* Fondo que cambia de tono morado muy lento */
-            animation: bgShift 12s ease-in-out infinite;
-            background: radial-gradient(circle at center, #130a1f 0%, #020202 100%);
         }
 
-        @keyframes bgShift {
-            0%, 100% { background-color: #020202; }
-            50% { background-color: #0a0514; }
-        }
-
-        /* Barra RGB Smooth Real */
-        .rgb-line {
-            position: fixed;
-            top: 0;
+        /* Iluminación ambiental que cambia de color (RGB Smooth) */
+        .ambient-glow {
+            position: absolute;
             width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
-            background-size: 400% 400%;
-            animation: rgbFlow 5s linear infinite;
+            height: 100%;
+            /* El degradado central que cambia de color */
+            background: radial-gradient(circle at center, var(--glow-color) 0%, #020202 70%);
+            opacity: 0.4;
+            filter: blur(80px);
+            animation: colorShift 12s linear infinite;
+            z-index: 0;
         }
 
-        @keyframes rgbFlow {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
+        @keyframes colorShift {
+            0% { --glow-color: #ff0000; }
+            20% { --glow-color: #ff00ff; }
+            40% { --glow-color: #0000ff; }
+            60% { --glow-color: #00ffff; }
+            80% { --glow-color: #00ff00; }
+            100% { --glow-color: #ff0000; }
         }
 
-        /* Animación de Burbujas */
+        /* Soporte para que la variable de color funcione en la animación */
+        @property --glow-color {
+            syntax: '<color>';
+            initial-value: #ff0000;
+            inherits: false;
+        }
+
+        /* Burbujas flotantes animadas */
         .bubble {
             position: absolute;
-            background: rgba(168, 85, 247, 0.15);
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 50%;
-            bottom: -50px;
+            bottom: -100px;
             animation: rise 15s infinite ease-in;
-            z-index: 0;
+            z-index: 1;
         }
 
         @keyframes rise {
             0% { transform: translateY(0) scale(1); opacity: 0; }
-            50% { opacity: 0.5; }
+            50% { opacity: 0.3; }
             100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
         }
 
-        /* Contenedor Principal */
+        /* Contenedor Cursed */
         .main-container {
             display: flex;
             align-items: center;
-            gap: 40px;
+            gap: 60px;
             z-index: 10;
         }
 
         h1 {
-            font-size: 7rem;
+            font-size: 8rem;
             margin: 0;
             color: white;
             text-transform: uppercase;
-            letter-spacing: -5px;
-            background: linear-gradient(to bottom, #fff 40%, #a855f7 100%);
+            letter-spacing: -8px;
+            filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.2));
+            background: linear-gradient(to bottom, #fff 50%, #666 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.5));
         }
 
-        /* Extraterrestres */
+        /* Marcianitos smooth */
         .alien-icon {
-            font-size: 4rem;
-            color: var(--accent);
-            filter: drop-shadow(0 0 15px var(--accent));
-            animation: float 4s ease-in-out infinite, blink 3s step-end infinite;
+            font-size: 5rem;
+            color: white;
+            opacity: 0.8;
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.4));
+            animation: alienMove 4s ease-in-out infinite, alienBlink 2.5s step-end infinite;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(5deg); }
+        @keyframes alienMove {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-25px) rotate(5deg); }
         }
 
-        @keyframes blink {
-            0%, 95% { opacity: 1; }
-            97% { opacity: 0.2; }
+        @keyframes alienBlink {
+            0%, 94% { opacity: 0.8; }
+            96% { opacity: 0.1; }
         }
 
     </style>
 </head>
 <body>
 
-    <div class="rgb-line"></div>
+    <div class="ambient-glow"></div>
 
     <!-- Generación de burbujas -->
-    <div class="bubble" style="left: 10%; width: 40px; height: 40px; animation-duration: 10s;"></div>
-    <div class="bubble" style="left: 30%; width: 20px; height: 20px; animation-duration: 18s; animation-delay: 2s;"></div>
-    <div class="bubble" style="left: 70%; width: 60px; height: 60px; animation-duration: 12s; animation-delay: 4s;"></div>
-    <div class="bubble" style="left: 90%; width: 30px; height: 30px; animation-duration: 15s; animation-delay: 1s;"></div>
+    <div class="bubble" style="left: 15%; width: 50px; height: 50px; animation-duration: 12s;"></div>
+    <div class="bubble" style="left: 45%; width: 30px; height: 30px; animation-duration: 20s; animation-delay: 2s;"></div>
+    <div class="bubble" style="left: 80%; width: 70px; height: 70px; animation-duration: 16s; animation-delay: 5s;"></div>
 
     <div class="main-container">
-        <i class="fas fa-alien-8bit alien-icon"></i>
+        <i class="fas fa-ghost alien-icon"></i>
         <h1>Cursed</h1>
-        <i class="fas fa-alien-8bit alien-icon" style="animation-delay: 2s;"></i>
+        <i class="fas fa-ghost alien-icon" style="animation-delay: 2s;"></i>
     </div>
 
 </body>
