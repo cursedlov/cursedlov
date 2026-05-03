@@ -3,122 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TERMINAL | CURSEDLOV</title>
+    <title>Cursedlov | Seu PC no máximo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        :root {
+            --bg: #050505;
+            --accent: #8b5cf6;
+            --accent-dark: #6d28d9;
+            --text: #ffffff;
+            --subtext: #94a3b8;
+        }
+
         body {
-            background-color: #000;
-            color: #ff0000;
-            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--bg);
+            background-image: radial-gradient(circle at top, #1e1b4b 0%, #050505 50%);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 40px 20px;
-            margin: 0;
-            text-transform: uppercase;
+            min-height: 100vh;
         }
 
-        .glitch {
-            font-size: 3.5rem;
-            font-weight: bold;
-            position: relative;
-            text-shadow: 0.05em 0 0 rgba(255,0,0,.75), -0.025em -0.05em 0 rgba(255,0,0,.75);
-            animation: glitch 500ms infinite;
-            margin-bottom: 20px;
-        }
-
-        @keyframes glitch {
-            0% { text-shadow: 0.05em 0 0 rgba(255,0,0,.75); }
-            50% { text-shadow: -0.05em -0.025em 0 rgba(255,0,0,.75); }
-            100% { text-shadow: 0.025em 0.05em 0 rgba(255,0,0,.75); }
-        }
-
-        .container {
-            border: 1px solid #ff0000;
-            padding: 25px;
-            background: rgba(20, 0, 0, 0.9);
-            width: 100%;
-            max-width: 600px;
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
-        }
-
-        .header-info {
-            border-bottom: 1px solid #ff0000;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            font-size: 0.9rem;
+        /* Navbar estilo pill */
+        nav {
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 10px 25px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
-            justify-content: space-between;
+            gap: 20px;
         }
 
-        .project-card {
-            margin-bottom: 25px;
-            padding: 15px;
-            border-left: 3px solid #ff0000;
-            background: rgba(255, 0, 0, 0.03);
-        }
-
-        .btn {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 8px 20px;
-            border: 1px solid #ff0000;
-            color: #ff0000;
+        nav a {
+            color: var(--text);
             text-decoration: none;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
             transition: 0.3s;
         }
 
-        .btn:hover {
-            background: #ff0000;
-            color: #000;
-            box-shadow: 0 0 15px #ff0000;
+        nav a:hover { opacity: 1; color: var(--accent); }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-top: 100px;
+            max-width: 800px;
+            padding: 0 20px;
         }
 
-        .logs {
-            background: #080808;
+        .logo-placeholder {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .badge {
+            background: rgba(139, 92, 246, 0.2);
+            color: var(--accent);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin: 20px 0;
+            background: linear-gradient(to bottom, #fff 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p {
+            color: var(--subtext);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        /* Botones estilo gaming */
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 12px;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.3s;
+        }
+
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); }
+
+        /* Notificación pequeña inferior */
+        .floating-notif {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(15, 15, 15, 0.9);
+            border: 1px solid rgba(139, 92, 246, 0.3);
             padding: 15px;
-            font-size: 0.75rem;
-            border: 1px solid #330000;
-            margin-top: 20px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 250px;
+            backdrop-filter: blur(5px);
         }
 
-        .log-entry { margin-bottom: 5px; }
-        .log-entry span { color: #880000; }
+        .notif-btn {
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            font-size: 0.8rem;
+            padding: 8px;
+            text-align: center;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
 
-    <div class="glitch">CURSEDLOV</div>
-    
-    <div class="container">
-        <div class="header-info">
-            <span>STATUS: ACTIVE</span>
-            <span>OS: CL-TERMINAL v1.0</span>
-        </div>
+    <nav>
+        <a href="#"><i class="fas fa-home"></i> Home</a>
+        <a href="#">Downloads</a>
+        <a href="#">Team Shop</a>
+        <a href="#">Sobre</a>
+    </nav>
 
-        <!-- SECCIÓN NGShoot -->
-        <div class="project-card">
-            <strong>> PROYECTO: NGShoot</strong>
-            <p style="font-size: 0.8rem; margin: 10px 0;">FPS Game en desarrollo. Sistema de combate optimizado.</p>
-            <a href="#" class="btn">DESCARGAR EXE</a>
+    <div class="hero">
+        <div class="logo-placeholder">
+            <i class="fas fa-bolt"></i>
         </div>
-
-        <!-- SECCIÓN SCRIPTS -->
-        <div class="project-card">
-            <strong>> MÓDULO: SCRIPTS AHK</strong>
-            <p style="font-size: 0.8rem; margin: 10px 0;">Configuración de recoil con sliders interactivos. Activación: Tecla Z.</p>
-            <a href="#" class="btn">OBTENER SCRIPT</a>
-        </div>
-
-        <!-- SYSTEM LOGS -->
-        <div class="logs">
-            <div class="log-entry"><span>[12:13]</span> WEB_DEPLOY_SUCCESSFUL</div>
-            <div class="log-entry"><span>[04:15]</span> HOTKEY_UPDATED: KEY_Z</div>
-            <div class="log-entry"><span>[04:10]</span> UI_UPDATE: ADDED_SLIDERS</div>
+        
+        <span class="badge">CURSEDLOV TEAM</span>
+        
+        <h1>Seu PC no <span>máximo</span></h1>
+        
+        <p>Experimente a verdadeira fluidez com nossas ferramentas exclusivas de otimização. Mais FPS, menos lag, sem complicações.</p>
+        
+        <div class="btn-group">
+            <a href="#" class="btn-primary"><i class="fas fa-download"></i> Baixar agora</a>
+            <a href="#" class="btn-secondary">Saber mais →</a>
         </div>
     </div>
 
-    <p style="font-size: 0.6rem; margin-top: 20px; opacity: 0.5;">PROYECTOS 2026 // NO SE REQUIERE AUTORIZACIÓN</p>
+    <div class="floating-notif">
+        <div style="font-size: 0.9rem; font-weight: bold;">SnyX OS 11 25H2</div>
+        <div style="font-size: 0.75rem; color: var(--subtext);">O maior lançamento do ano já está disponível</div>
+        <a href="#" class="notif-btn">Ver Lançamento</a>
+    </div>
 
 </body>
 </html>
