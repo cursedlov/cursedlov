@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CursedLov | L'Expérience Ultime</title>
+    <!-- Iconos de FontAwesome para redes sociales -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Reset y Variables */
         :root {
-            --primary-purple: #8a2be2; /* Morado base */
-            --neon-purple: #d946ef;   /* Magenta neón para brillos */
+            --primary-purple: #8a2be2;
+            --neon-pink: #ff00ff;
+            --deep-purple: #4b0082;
             --dark-bg: #050505;
-            --glass-bg: rgba(20, 20, 20, 0.6);
+            --glass-bg: rgba(20, 20, 20, 0.7);
             --text-white: #ffffff;
             --text-gray: #b0b0b0;
         }
@@ -20,15 +22,44 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
             background-color: var(--dark-bg);
             color: var(--text-white);
             overflow-x: hidden;
+            /* Fondo RGB Morado Animado */
+            background: linear-gradient(-45deg, #050505, #1a0b2e, #2d0036, #000000);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
         }
 
-        /* Navbar con Efecto Blur (Glassmorphism) */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Burbujas de fondo animadas */
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(138, 43, 226, 0.2) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+            animation: floatBubble 10s infinite ease-in-out;
+        }
+
+        .bubble:nth-child(1) { width: 300px; height: 300px; top: 10%; left: 10%; animation-duration: 12s; }
+        .bubble:nth-child(2) { width: 500px; height: 500px; bottom: 20%; right: 10%; animation-duration: 15s; animation-delay: 2s; }
+        .bubble:nth-child(3) { width: 200px; height: 200px; top: 40%; right: 30%; animation-duration: 9s; animation-delay: 1s; }
+
+        @keyframes floatBubble {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.1); }
+        }
+
+        /* Navbar */
         nav {
             display: flex;
             justify-content: space-between;
@@ -38,24 +69,48 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            
-            /* El efecto Blur mágico */
             background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(138, 43, 226, 0.2);
-            transition: all 0.3s ease;
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(138, 43, 226, 0.3);
         }
 
-        .logo {
-            font-size: 1.8rem;
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Logo Circular Animado */
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid transparent;
+            background: linear-gradient(var(--dark-bg), var(--dark-bg)) padding-box,
+                        linear-gradient(45deg, var(--primary-purple), var(--neon-pink), var(--primary-purple)) border-box;
+            animation: spinBorder 4s linear infinite, floatLogo 3s ease-in-out infinite;
+            box-shadow: 0 0 15px var(--primary-purple);
+        }
+
+        @keyframes spinBorder {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        @keyframes floatLogo {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 2px;
-            background: linear-gradient(90deg, #fff, var(--neon-purple));
+            background: linear-gradient(90deg, #fff, var(--neon-pink));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
         }
 
         .nav-links {
@@ -66,7 +121,7 @@
         .nav-links a {
             color: var(--text-gray);
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 600;
             text-transform: uppercase;
             transition: all 0.3s;
@@ -74,28 +129,12 @@
         }
 
         .nav-links a:hover {
-            color: var(--neon-purple);
+            color: var(--neon-pink);
             text-shadow: 0 0 10px var(--primary-purple);
         }
 
-        /* Pequeña línea debajo al pasar el mouse */
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--neon-purple);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
         .btn-action {
-            background: linear-gradient(45deg, var(--primary-purple), var(--neon-purple));
+            background: linear-gradient(45deg, var(--primary-purple), var(--neon-pink));
             color: white;
             padding: 10px 25px;
             border-radius: 30px;
@@ -109,20 +148,34 @@
 
         .btn-action:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(217, 70, 239, 0.6);
+            box-shadow: 0 0 25px rgba(255, 0, 255, 0.6);
+        }
+
+        /* Secciones Generales */
+        section {
+            padding: 100px 5%;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            text-align: center;
+            background: linear-gradient(to right, #fff, var(--primary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         /* Hero Section */
         .hero {
             height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
             text-align: center;
-            padding: 0 20px;
-            /* Fondo con degradado radial morado sutil */
-            background: radial-gradient(circle at 50% 50%, rgba(138, 43, 226, 0.15) 0%, rgba(5, 5, 5, 1) 70%);
         }
 
         .hero h1 {
@@ -136,7 +189,7 @@
         .hero h1 span {
             display: block;
             font-size: 2rem;
-            color: var(--neon-purple);
+            color: var(--neon-pink);
             letter-spacing: 5px;
             margin-bottom: 10px;
             text-shadow: 0 0 20px var(--primary-purple);
@@ -147,88 +200,80 @@
             color: var(--text-gray);
             max-width: 600px;
             margin-bottom: 40px;
-            line-height: 1.6;
         }
 
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--neon-purple);
-            color: var(--neon-purple);
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s;
-        }
-
-        .btn-outline:hover {
-            background: var(--neon-purple);
-            color: white;
-            box-shadow: 0 0 20px var(--primary-purple);
-        }
-
-        /* Sección de Tarjetas (Apps/Services) */
-        .grid-section {
-            padding: 100px 5%;
+        /* Tarjetas Glassmorphism */
+        .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
-            background: #080808;
+            width: 100%;
+            max-width: 1200px;
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.05);
             padding: 40px;
             border-radius: 20px;
-            border: 1px solid rgba(138, 43, 226, 0.1);
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            backdrop-filter: blur(5px);
             transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
         }
 
         .card:hover {
             transform: translateY(-10px);
-            border-color: var(--neon-purple);
-            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.2);
+            border-color: var(--neon-pink);
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.3);
         }
 
-        .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+        /* Footer con Redes Sociales */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 50px 5%;
+            border-top: 1px solid rgba(138, 43, 226, 0.2);
+            text-align: center;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .social-link {
             color: white;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        .card p {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-        }
-
-        /* Icono decorativo en la tarjeta */
-        .card::before {
+        .social-link::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
             width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--primary-purple), var(--neon-purple));
-            opacity: 0;
-            transition: opacity 0.3s;
+            height: 100%;
+            background: var(--primary-purple);
+            border-radius: 50%;
+            z-index: -1;
+            transition: transform 0.3s ease;
+            opacity: 0.5;
         }
 
-        .card:hover::before {
-            opacity: 1;
+        .social-link:hover {
+            color: var(--neon-pink);
+            transform: translateY(-5px);
+            text-shadow: 0 0 20px var(--primary-purple);
         }
 
-        footer {
-            text-align: center;
-            padding: 50px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        .social-link:hover::before {
+            transform: translate(-50%, -50%) scale(1.5);
+        }
+
+        .footer-text {
             color: var(--text-gray);
             font-size: 0.9rem;
         }
@@ -236,60 +281,114 @@
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 { font-size: 3rem; }
-            .hero h1 span { font-size: 1.5rem; }
             nav { flex-direction: column; padding: 20px; gap: 15px; }
-            .nav-links { gap: 15px; font-size: 0.8rem; }
-            .hero-buttons { flex-direction: column; width: 100%; }
-            .btn-action, .btn-outline { width: 100%; text-align: center; }
+            .nav-links { gap: 15px; font-size: 0.8rem; flex-wrap: wrap; justify-content: center; }
+            .social-icons { gap: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navegación Blur -->
+    <!-- Burbujas de fondo -->
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+
+    <!-- Navegación -->
     <nav>
-        <div class="logo">Cursed<span>Lov</span></div>
+        <div class="nav-container">
+            <!-- REEMPLAZA 'logo.png' CON EL NOMBRE DE TU IMAGEN REAL -->
+            <img src="https://via.placeholder.com/150/8a2be2/ffffff?text=C" alt="Logo CursedLov" class="logo-img">
+            <div class="logo-text">Cursed<span>Lov</span></div>
+        </div>
         <div class="nav-links">
             <a href="#accueil">Accueil</a>
             <a href="#services">Services</a>
             <a href="#apps">Applications</a>
             <a href="#aide">Aide</a>
         </div>
-        <a href="#" class="btn-action">Rejoindre</a>
+        <a href="#contact" class="btn-action">Rejoindre</a>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="accueil">
+    <!-- Accueil (Inicio) -->
+    <section id="accueil" class="hero">
         <h1>
             <span>Bienvenue dans le</span>
             CursedLov
         </h1>
         <p>Plongez dans l'univers digital. Optimisation, outils exclusifs et une expérience utilisateur conçue pour les initiés.</p>
-        
         <div class="hero-buttons">
             <a href="#apps" class="btn-action">Voir les Apps</a>
-            <a href="#services" class="btn-outline">Nos Services</a>
+            <a href="#services" class="btn-action" style="background: transparent; border: 2px solid var(--neon-pink);">Nos Services</a>
         </div>
     </section>
 
-    <!-- Grid de Contenido -->
-    <section class="grid-section" id="apps">
-        <div class="card">
-            <h3>🚀 Optimiseur PC</h3>
-            <p>Libérez la puissance de votre machine. Nettoyage profond et réglages de latence pour une performance maximale.</p>
-        </div>
-        <div class="card">
-            <h3>🎮 Gaming Suite</h3>
-            <p>Outils conçus pour les gamers. Boostez vos FPS et réduisez l'input lag avec nos profils personnalisés.</p>
-        </div>
-        <div class="card">
-            <h3>🛡️ Sécurité & Aide</h3>
-            <p>Protection avancée et support communautaire. Nous vous accompagnons à chaque étape de votre configuration.</p>
+    <!-- Services -->
+    <section id="services">
+        <h2>Nos Services</h2>
+        <div class="grid-container">
+            <div class="card">
+                <h3><i class="fas fa-bolt" style="color:var(--neon-pink)"></i> Optimisation</h3>
+                <p>Améliorez les performances de votre système avec nos outils de nettoyage profond.</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-shield-alt" style="color:var(--neon-pink)"></i> Sécurité</h3>
+                <p>Protection avancée contre les menaces numériques pour une navigation tranquille.</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-cloud" style="color:var(--neon-pink)"></i> Cloud</h3>
+                <p>Solutions de stockage et synchronisation rapides et sécurisées.</p>
+            </div>
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2026 CursedLov. Tous droits réservés. | Fait avec passion.</p>
+    <!-- Applications -->
+    <section id="apps">
+        <h2>Applications</h2>
+        <div class="grid-container">
+            <div class="card">
+                <h3>🚀 Cursed Booster</h3>
+                <p>Libérez la puissance de votre machine. Nettoyage profond et réglages de latence.</p>
+            </div>
+            <div class="card">
+                <h3>🎮 Gaming Suite</h3>
+                <p>Outils conçus pour les gamers. Boostez vos FPS et réduisez l'input lag.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Aide -->
+    <section id="aide">
+        <h2>Aide & Support</h2>
+        <div class="grid-container">
+            <div class="card">
+                <h3>❓ FAQ</h3>
+                <p>Réponses aux questions les plus fréquentes sur nos outils et services.</p>
+            </div>
+            <div class="card">
+                <h3>📞 Contact Direct</h3>
+                <p>Notre équipe est disponible pour vous aider via Discord ou Email.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer con Redes Sociales -->
+    <footer id="contact">
+        <div class="social-icons">
+            <a href="https://www.instagram.com/cursedlov_/" target="_blank" class="social-link" title="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/@cursedlov3r" target="_blank" class="social-link" title="YouTube">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://open.spotify.com/user/31syapaq64qsonkvntuyx5abghke" target="_blank" class="social-link" title="Spotify">
+                <i class="fab fa-spotify"></i>
+            </a>
+            <a href="mailto:cursedlov@gmail.com" class="social-link" title="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+        <p class="footer-text">&copy; 2026 CursedLov. Tous droits réservés. | Fait avec passion 💜</p>
     </footer>
 
 </body>
