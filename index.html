@@ -3,157 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cursed | Premium Performance</title>
+    <title>Cursed</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&display=swap');
+
         :root {
-            --bg: #050505;
+            --bg: #020202;
             --accent: #a855f7;
-            --text: #ffffff;
         }
 
         body {
             background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Inter', sans-serif;
             margin: 0;
-            overflow: hidden; /* Para las burbujas */
+            overflow: hidden;
+            font-family: 'Syncopate', sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
-            /* Graduado de fondo que cambia lento y smooth */
-            background: radial-gradient(circle at top, #1e1b4b 0%, #050505 70%);
-            animation: backgroundSmooth 15s ease infinite;
-        }
-
-        @keyframes backgroundSmooth {
-            0%, 100% { background-color: #050505; }
-            50% { background-color: #1a0b2e; }
-        }
-
-        /* RGB Smooth Top Bar */
-        .rgb-bar {
-            width: 100%;
-            height: 40px;
-            background: #000;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            font-weight: bold;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            color: #fff;
-            animation: rgbText 5s linear infinite;
+            height: 100vh;
+            /* Fondo que cambia de tono morado muy lento */
+            animation: bgShift 12s ease-in-out infinite;
+            background: radial-gradient(circle at center, #130a1f 0%, #020202 100%);
         }
 
-        @keyframes rgbText {
-            0% { text-shadow: 0 0 10px #ff0000; color: #ff0000; }
-            33% { text-shadow: 0 0 10px #00ff00; color: #00ff00; }
-            66% { text-shadow: 0 0 10px #0000ff; color: #0000ff; }
-            100% { text-shadow: 0 0 10px #ff0000; color: #ff0000; }
+        @keyframes bgShift {
+            0%, 100% { background-color: #020202; }
+            50% { background-color: #0a0514; }
+        }
+
+        /* Barra RGB Smooth Real */
+        .rgb-line {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
+            background-size: 400% 400%;
+            animation: rgbFlow 5s linear infinite;
+        }
+
+        @keyframes rgbFlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
         }
 
         /* Animación de Burbujas */
-        .bubbles {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-        }
         .bubble {
             position: absolute;
-            list-style: none;
-            display: block;
-            background: rgba(168, 85, 247, 0.1);
-            bottom: -150px;
-            animation: animateBubble 25s linear infinite;
+            background: rgba(168, 85, 247, 0.15);
             border-radius: 50%;
-        }
-        @keyframes animateBubble {
-            0% { transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 0; }
-            100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 50%; }
-        }
-
-        /* Hero Content */
-        .hero {
-            text-align: center;
-            margin-top: 80px;
-            z-index: 1;
+            bottom: -50px;
+            animation: rise 15s infinite ease-in;
+            z-index: 0;
         }
 
-        .title-container {
+        @keyframes rise {
+            0% { transform: translateY(0) scale(1); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+        }
+
+        /* Contenedor Principal */
+        .main-container {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 20px;
+            gap: 40px;
+            z-index: 10;
         }
 
         h1 {
-            font-size: 5rem;
+            font-size: 7rem;
             margin: 0;
-            background: linear-gradient(to bottom, #fff, var(--accent));
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: -5px;
+            background: linear-gradient(to bottom, #fff 40%, #a855f7 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-weight: 900;
+            filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.5));
         }
 
-        /* Marcianitos */
-        .alien {
-            font-size: 3rem;
+        /* Extraterrestres */
+        .alien-icon {
+            font-size: 4rem;
             color: var(--accent);
-            animation: alienFloat 3s ease-in-out infinite, alienBlink 2s linear infinite;
-        }
-        @keyframes alienFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-        @keyframes alienBlink {
-            0%, 90%, 100% { opacity: 1; }
-            95% { opacity: 0.3; }
+            filter: drop-shadow(0 0 15px var(--accent));
+            animation: float 4s ease-in-out infinite, blink 3s step-end infinite;
         }
 
-        .description {
-            color: #94a3b8;
-            font-size: 1.2rem;
-            margin: 20px 0 40px;
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
         }
 
-        .btn-primary {
-            background: var(--accent);
-            color: white;
-            padding: 18px 45px;
-            border-radius: 15px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            box-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
-            transition: 0.3s;
+        @keyframes blink {
+            0%, 95% { opacity: 1; }
+            97% { opacity: 0.2; }
         }
-        .btn-primary:hover { transform: scale(1.05); background: #9333ea; }
+
     </style>
 </head>
 <body>
 
-    <div class="rgb-bar">RECOIL MODULE ACTIVE</div>
+    <div class="rgb-line"></div>
 
-    <ul class="bubbles">
-        <li class="bubble" style="left: 25%; width: 80px; height: 80px; animation-delay: 0s;"></li>
-        <li class="bubble" style="left: 10%; width: 20px; height: 20px; animation-delay: 2s;"></li>
-        <li class="bubble" style="left: 70%; width: 40px; height: 40px; animation-delay: 4s;"></li>
-        <li class="bubble" style="left: 80%; width: 110px; height: 110px; animation-delay: 3s;"></li>
-    </ul>
+    <!-- Generación de burbujas -->
+    <div class="bubble" style="left: 10%; width: 40px; height: 40px; animation-duration: 10s;"></div>
+    <div class="bubble" style="left: 30%; width: 20px; height: 20px; animation-duration: 18s; animation-delay: 2s;"></div>
+    <div class="bubble" style="left: 70%; width: 60px; height: 60px; animation-duration: 12s; animation-delay: 4s;"></div>
+    <div class="bubble" style="left: 90%; width: 30px; height: 30px; animation-duration: 15s; animation-delay: 1s;"></div>
 
-    <div class="hero">
-        <div class="title-container">
-            <div class="alien"><i class="fas fa-user-astronaut"></i></div>
-            <h1>Cursed</h1>
-            <div class="alien" style="animation-delay: 1.5s;"><i class="fas fa-user-astronaut"></i></div>
-        </div>
-        
-        <p class="description">Push your system to the limit.<br>Optimized for NGShoot & High-Performance gaming.</p>
-        
-        <a href="#" class="btn-primary">Download Now</a>
+    <div class="main-container">
+        <i class="fas fa-alien-8bit alien-icon"></i>
+        <h1>Cursed</h1>
+        <i class="fas fa-alien-8bit alien-icon" style="animation-delay: 2s;"></i>
     </div>
 
 </body>
