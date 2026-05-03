@@ -1,334 +1,457 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CursedLov | L'Expérience Ultime</title>
+    <title>CursedLov | Optimización & Tools</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --neon-purple: #b026ff;
-            --neon-pink: #ff00ff;
-            --deep-blue: #0f0c29;
-            --glass-bg: rgba(255, 255, 255, 0.05);
+            --bg-dark: #050505;
+            --bg-card: #0f0f0f;
+            --primary-purple: #7c3aed; /* Morado oscuro vibrante */
+            --accent-purple: #a855f7;
             --text-white: #ffffff;
+            --text-gray: #9ca3af;
+            --glass-border: rgba(124, 58, 237, 0.2);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', sans-serif; /* Fuente limpia */
             scroll-behavior: smooth;
         }
 
         body {
+            background-color: var(--bg-dark);
             color: var(--text-white);
             overflow-x: hidden;
-            /* Fondo RGB Animado */
-            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #4b0082, #800080);
-            background-size: 400% 400%;
-            animation: gradientBG 20s ease infinite;
+            /* Fondo sutil con degradado oscuro */
+            background-image: radial-gradient(circle at 50% 0%, #1a0b2e 0%, #050505 60%);
+            min-height: 100vh;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Navbar Compacta */
+        /* Navbar Flotante Estilo Cápsula */
         nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1000px;
+            height: 60px;
+            background: rgba(20, 20, 20, 0.8);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 5%; /* Más chiquita */
-            position: fixed;
-            width: 100%;
-            top: 0;
+            padding: 0 25px;
             z-index: 1000;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(176, 38, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .nav-container {
+        .logo {
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            color: white;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        /* Logo Marciano Animado */
-        .alien-logo {
-            font-size: 1.8rem;
-            color: var(--neon-pink);
-            text-shadow: 0 0 15px var(--neon-purple);
-            animation: floatAlien 3s ease-in-out infinite;
-        }
+        .logo i { color: var(--accent-purple); }
 
-        @keyframes floatAlien {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-5px) rotate(5deg); }
-        }
-
-        .logo-text {
-            font-size: 1.2rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            background: linear-gradient(90deg, #fff, var(--neon-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-links {
+        .nav-center {
             display: flex;
-            gap: 20px;
+            gap: 25px;
         }
 
-        .nav-links a {
-            color: rgba(255,255,255,0.7);
+        .nav-center a {
+            color: var(--text-gray);
             text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-center a:hover { color: white; }
+
+        .social-nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-nav a {
+            color: var(--text-gray);
+            font-size: 1.1rem;
             transition: all 0.3s;
         }
 
-        .nav-links a:hover {
-            color: var(--neon-pink);
-            text-shadow: 0 0 10px var(--neon-purple);
+        .social-nav a:hover {
+            color: var(--accent-purple);
+            transform: translateY(-2px);
+            text-shadow: 0 0 10px var(--primary-purple);
         }
 
-        .btn-action {
-            background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink));
-            color: white;
-            padding: 8px 20px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 0.85rem;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 0 15px rgba(176, 38, 255, 0.4);
-        }
-
-        .btn-action:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(255, 0, 255, 0.6);
-        }
-
-        /* Secciones de Pantalla Completa */
+        /* Secciones Generales */
         section {
-            min-height: 100vh; /* Ocupa toda la pantalla */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 80px 5%;
-            position: relative;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 120px 5% 80px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         h2 {
-            font-size: 3.5rem;
-            margin-bottom: 60px;
-            text-transform: uppercase;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
             text-align: center;
-            background: linear-gradient(to right, #fff, var(--neon-purple));
+            background: linear-gradient(to right, #fff, var(--accent-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(176, 38, 255, 0.3);
         }
 
-        /* Tarjetas Animadas */
-        .grid-container {
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding-top: 180px;
+            padding-bottom: 100px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            color: var(--text-gray);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        /* Grid de Apps (Estilo Launcher) */
+        .apps-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            width: 100%;
-            max-width: 1200px;
+            gap: 30px;
         }
 
-        .card {
-            background: var(--glass-bg);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efecto rebote suave */
+        .app-card {
+            background: var(--bg-card);
+            border: 1px solid #222;
+            border-radius: 16px;
+            padding: 25px;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-        }
-
-        .card:hover {
-            transform: scale(1.05) translateY(-10px); /* Se hace grande */
-            border-color: var(--neon-pink);
-            box-shadow: 0 20px 40px rgba(176, 38, 255, 0.4);
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--neon-pink);
-        }
-
-        .card p {
-            color: rgba(255,255,255,0.8);
-            line-height: 1.6;
-        }
-
-        /* Footer con Redes Sociales */
-        footer {
-            background: rgba(0, 0, 0, 0.4);
-            padding: 40px 5%;
-            text-align: center;
-            border-top: 1px solid rgba(176, 38, 255, 0.2);
-        }
-
-        .social-icons {
             display: flex;
-            justify-content: center;
-            gap: 40px;
+            flex-direction: column;
+        }
+
+        .app-card:hover {
+            border-color: var(--primary-purple);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.15);
+        }
+
+        .app-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
             margin-bottom: 20px;
         }
 
-        .social-link {
+        .app-icon {
+            width: 50px;
+            height: 50px;
+            background: #1a1a1a;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--accent-purple);
+        }
+
+        .app-title h3 { font-size: 1.2rem; margin-bottom: 5px; }
+        .app-title span { font-size: 0.8rem; color: var(--text-gray); text-transform: uppercase; letter-spacing: 1px; }
+
+        .app-desc {
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .lang-tag {
+            font-size: 0.75rem;
+            color: var(--accent-purple);
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .password-warning {
+            background: rgba(124, 58, 237, 0.1);
+            border: 1px dashed var(--primary-purple);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            color: #d8b4fe;
+            text-align: center;
+        }
+
+        .btn-download {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: #222;
             color: white;
-            font-size: 2.5rem;
-            transition: all 0.3s ease;
-            filter: drop-shadow(0 0 5px var(--neon-purple));
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 1px solid #333;
         }
 
-        .social-link:hover {
-            color: var(--neon-pink);
-            transform: scale(1.2) rotate(10deg);
-            filter: drop-shadow(0 0 15px var(--neon-pink));
+        .btn-download:hover {
+            background: var(--primary-purple);
+            border-color: var(--primary-purple);
+            box-shadow: 0 0 15px rgba(124, 58, 237, 0.4);
         }
 
-        /* Burbujas de fondo */
-        .bubble {
-            position: fixed;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(176, 38, 255, 0.15) 0%, rgba(0,0,0,0) 70%);
-            z-index: -1;
-            animation: floatBubble 15s infinite ease-in-out;
-            pointer-events: none;
+        /* Servicios Texto */
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
         }
 
-        .bubble:nth-child(1) { width: 400px; height: 400px; top: 10%; left: -10%; animation-duration: 20s; }
-        .bubble:nth-child(2) { width: 600px; height: 600px; bottom: 10%; right: -10%; animation-duration: 25s; animation-delay: 2s; }
-        
-        @keyframes floatBubble {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(30px, -50px); }
+        .service-item h3 {
+            color: var(--accent-purple);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .service-item p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .multi-lang-text {
+            font-size: 0.85rem;
+            color: #666;
+            border-left: 2px solid var(--primary-purple);
+            padding-left: 10px;
+            margin-top: 10px;
+        }
+
+        /* Aide / Contacto IG */
+        .contact-box {
+            background: var(--bg-card);
+            border: 1px solid #222;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .ig-input-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .ig-input {
+            flex: 1;
+            background: #050505;
+            border: 1px solid #333;
+            padding: 15px;
+            border-radius: 10px;
+            color: white;
+            outline: none;
+        }
+
+        .ig-btn {
+            background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+            border: none;
+            padding: 0 25px;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        .ig-btn:hover { transform: scale(1.05); }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #555;
+            font-size: 0.8rem;
+            border-top: 1px solid #111;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            h2 { font-size: 2.5rem; }
-            nav { padding: 10px 20px; }
-            .nav-links { display: none; } /* Ocultar menú en móvil simple por ahora */
-            .social-icons { gap: 20px; }
+            nav { width: 95%; padding: 0 15px; }
+            .nav-center { display: none; } /* Ocultar links centrales en móvil */
+            .hero h1 { font-size: 2.5rem; }
+            .ig-input-group { flex-direction: column; }
+            .ig-btn { padding: 15px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Burbujas de fondo -->
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-
-    <!-- Navegación Compacta -->
+    <!-- Navbar Flotante -->
     <nav>
-        <div class="nav-container">
-            <div class="alien-logo"></div>
-            <div class="logo-text">Cursed<span>Lov</span></div>
+        <div class="logo">
+            <i class="fas fa-ghost"></i> CursedLov
         </div>
-        <div class="nav-links">
-            <a href="#accueil">Accueil</a>
-            <a href="#services">Services</a>
-            <a href="#apps">Applications</a>
-            <a href="#aide">Aide</a>
+        <div class="nav-center">
+            <a href="#inicio">Inicio</a>
+            <a href="#apps">Apps</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#aide">Ayuda</a>
         </div>
-        <a href="#contact" class="btn-action">Rejoindre</a>
+        <div class="social-nav">
+            <a href="https://www.instagram.com/cursedlov_/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@cursedlov3r" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://open.spotify.com/user/31syapaq64qsonkvntuyx5abghke" target="_blank"><i class="fab fa-spotify"></i></a>
+            <a href="mailto:cursedlov@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
     </nav>
 
-    <!-- Accueil -->
-    <section id="accueil">
-        <h1 style="font-size: 5rem; text-align: center; margin-bottom: 20px; text-transform: uppercase;">
-            Cursed<span style="color:var(--neon-pink)">Lov</span>
-        </h1>
-        <p style="font-size: 1.2rem; color: rgba(255,255,255,0.7); max-width: 600px; text-align: center; margin-bottom: 40px;">
-            L'univers digital ultime. Optimisation, outils et communauté.
-        </p>
-        <a href="#apps" class="btn-action" style="padding: 15px 40px; font-size: 1rem;">Explorer</a>
+    <!-- Hero -->
+    <section id="inicio" class="hero">
+        <h1>Tu PC, <span style="color:var(--accent-purple)">Máximo Rendimiento</span></h1>
+        <p>Herramientas exclusivas de optimización, limpieza y seguridad. Diseñado para gamers y creadores.</p>
+        <a href="#apps" class="btn-download" style="display:inline-block; width:auto; padding: 15px 40px; background: var(--primary-purple); border:none;">Ver Herramientas</a>
     </section>
 
-    <!-- Services -->
-    <section id="services">
-        <h2>Nos Services</h2>
-        <div class="grid-container">
-            <div class="card">
-                <h3><i class="fas fa-bolt"></i> Optimisation</h3>
-                <p>Améliorez les performances de votre système avec nos outils de nettoyage profond.</p>
-            </div>
-            <div class="card">
-                <h3><i class="fas fa-shield-alt"></i> Sécurité</h3>
-                <p>Protection avancée contre les menaces numériques pour une navigation tranquille.</p>
-            </div>
-            <div class="card">
-                <h3><i class="fas fa-cloud"></i> Cloud</h3>
-                <p>Solutions de stockage et synchronisation rapides et sécurisées.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Applications -->
+    <!-- Aplicaciones -->
     <section id="apps">
-        <h2>Applications</h2>
-        <div class="grid-container">
-            <div class="card">
-                <h3>🚀 Cursed Booster</h3>
-                <p>Libérez la puissance de votre machine. Nettoyage profond et réglages de latence.</p>
+        <h2>Descargas</h2>
+        <div class="apps-grid">
+            
+            <!-- App 1: Limpiador -->
+            <div class="app-card">
+                <div class="app-header">
+                    <div class="app-icon"><i class="fas fa-broom"></i></div>
+                    <div class="app-title">
+                        <h3>Uninstaller Pro</h3>
+                        <span>Limpieza</span>
+                    </div>
+                </div>
+                <div class="lang-tag">ES / EN / PT / FR</div>
+                <p class="app-desc">
+                    Elimina programas residuales y archivos basura que ralentizan tu sistema. Limpieza profunda en un clic.
+                    <br><small style="color:#666">Remove residual programs and junk files. Deep cleaning in one click.</small>
+                </p>
+                <a href="https://www.mediafire.com/file/8f9guq3r6dw41xg/Eliminar+Programas.exe/file" target="_blank" class="btn-download">Descargar Ahora</a>
             </div>
-            <div class="card">
-                <h3>🎮 Gaming Suite</h3>
-                <p>Outils conçus pour les gamers. Boostez vos FPS et réduisez l'input lag.</p>
+
+            <!-- App 2: KFC (Ping) -->
+            <div class="app-card">
+                <div class="app-header">
+                    <div class="app-icon"><i class="fas fa-gamepad"></i></div>
+                    <div class="app-title">
+                        <h3>KFC Optimizer</h3>
+                        <span>Gaming / Ping</span>
+                    </div>
+                </div>
+                <div class="lang-tag">ES / EN / PT / FR</div>
+                <p class="app-desc">
+                    Reduce tu latencia y mejora la estabilidad de red. Ideal para shooters y juegos competitivos.
+                    <br><small style="color:#666">Reduce latency and improve network stability. Ideal for competitive gaming.</small>
+                </p>
+                <a href="https://www.mediafire.com/file/l8cl8vncn0m3zvc/KFC.exe/file" target="_blank" class="btn-download">Descargar Ahora</a>
             </div>
-            <div class="card">
-                <h3>🎨 Custom UI</h3>
-                <p>Personnalisez votre interface Windows avec nos thèmes exclusifs sombres.</p>
+
+            <!-- App 3: Spoiler NG (Con Contraseña) -->
+            <div class="app-card" style="border-color: var(--primary-purple);">
+                <div class="app-header">
+                    <div class="app-icon"><i class="fas fa-microchip"></i></div>
+                    <div class="app-title">
+                        <h3>Spoiler NG</h3>
+                        <span>System Boost</span>
+                    </div>
+                </div>
+                <div class="password-warning">
+                    <i class="fas fa-lock"></i> CONTRASEÑA: <strong>NGTEAM</strong>
+                </div>
+                <p class="app-desc">
+                    Optimizador avanzado de CPU y RAM. Libera el máximo potencial de tu hardware.
+                    <br><small style="color:#666">Advanced CPU/RAM optimizer. Unlock your hardware's full potential.</small>
+                </p>
+                <a href="https://www.mediafire.com/file/fi4uo043112u4j3/SPOILER_NG+Optimizer.exe/file" target="_blank" class="btn-download">Descargar Ahora</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Servicios -->
+    <section id="servicios">
+        <h2>Por Qué Elegirnos</h2>
+        <div class="services-container">
+            <div class="service-item">
+                <h3><i class="fas fa-tachometer-alt"></i> Optimización Real</h3>
+                <p>Ajustes precisos en el registro y servicios de Windows para ganar FPS estables.</p>
+                <div class="multi-lang-text">
+                    ES: Gana FPS estables.<br>EN: Gain stable FPS.<br>PT: Ganhe FPS estável.<br>FR: Gagnez des FPS stables.
+                </div>
+            </div>
+            <div class="service-item">
+                <h3><i class="fas fa-shield-virus"></i> Seguridad Garantizada</h3>
+                <p>Nuestros archivos son escaneados y libres de malware. Tu privacidad es primero.</p>
+                <div class="multi-lang-text">
+                    ES: Libre de malware.<br>EN: Malware free.<br>PT: Livre de malware.<br>FR: Sans malware.
+                </div>
+            </div>
+            <div class="service-item">
+                <h3><i class="fas fa-cloud-upload-alt"></i> Cloud & Soporte</h3>
+                <p>Actualizaciones constantes y soporte directo para asegurar que tu PC siempre vuele.</p>
+                <div class="multi-lang-text">
+                    ES: Soporte directo.<br>EN: Direct support.<br>PT: Suporte direto.<br>FR: Support direct.
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Aide -->
+    <!-- Aide / Contacto -->
     <section id="aide">
-        <h2>Aide & Support</h2>
-        <div class="grid-container">
-            <div class="card">
-                <h3>❓ FAQ</h3>
-                <p>Réponses aux questions les plus fréquentes sur nos outils et services.</p>
+        <h2>¿Tienes Dudas?</h2>
+        <div class="contact-box">
+            <p style="color: #ccc; margin-bottom: 20px;">
+                Escribe tu pregunta abajo. Te responderé directamente por Instagram DM.
+            </p>
+            <div class="ig-input-group">
+                <input type="text" class="ig-input" placeholder="Escribe tu duda aquí...">
+                <a href="https://www.instagram.com/cursedlov_/" target="_blank" class="ig-btn">
+                    <i class="fab fa-instagram"></i> Enviar
+                </a>
             </div>
-            <div class="card">
-                <h3>📞 Contact Direct</h3>
-                <p>Notre équipe est disponible pour vous aider via Discord ou Email.</p>
-            </div>
+            <p style="font-size: 0.8rem; color: #555; margin-top: 15px;">
+                *Al hacer clic, se abrirá tu chat directo con @cursedlov_
+            </p>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="social-icons">
-            <a href="https://www.instagram.com/cursedlov_/" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.youtube.com/@cursedlov3r" target="_blank" class="social-link"><i class="fab fa-youtube"></i></a>
-            <a href="https://open.spotify.com/user/31syapaq64qsonkvntuyx5abghke" target="_blank" class="social-link"><i class="fab fa-spotify"></i></a>
-            <a href="mailto:cursedlov@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
-        </div>
-        <p style="color: rgba(255,255,255,0.5); font-size: 0.9rem;">&copy; 2026 CursedLov. Tous droits réservés.</p>
+    <footer>
+        <p>&copy; 2026 CursedLov. Todos los derechos reservados.</p>
     </footer>
 
 </body>
