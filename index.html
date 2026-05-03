@@ -1,11 +1,20 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CursedLov | Tech & Gaming</title>
+    <title>CursedLov | L'Expérience Ultime</title>
     <style>
-        /* Reset básico */
+        /* Reset y Variables */
+        :root {
+            --primary-purple: #8a2be2; /* Morado base */
+            --neon-purple: #d946ef;   /* Magenta neón para brillos */
+            --dark-bg: #050505;
+            --glass-bg: rgba(20, 20, 20, 0.6);
+            --text-white: #ffffff;
+            --text-gray: #b0b0b0;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -14,73 +23,93 @@
         }
 
         body {
-            background-color: #050505; /* Fondo muy oscuro casi negro */
-            color: #ffffff;
+            background-color: var(--dark-bg);
+            color: var(--text-white);
             overflow-x: hidden;
         }
 
-        /* Tipografía y Colores Principales */
-        :root {
-            --primary-color: #00f3ff; /* Cian neón similar al de la referencia */
-            --secondary-color: #1a1a1a;
-            --text-gray: #b0b0b0;
-        }
-
-        /* Navbar */
+        /* Navbar con Efecto Blur (Glassmorphism) */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
-            background: rgba(5, 5, 5, 0.9);
+            padding: 15px 5%;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 243, 255, 0.1);
+            
+            /* El efecto Blur mágico */
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(138, 43, 226, 0.2);
+            transition: all 0.3s ease;
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-size: 1.8rem;
+            font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 2px;
+            background: linear-gradient(90deg, #fff, var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
         }
 
-        .logo span {
-            color: var(--primary-color);
+        .nav-links {
+            display: flex;
+            gap: 30px;
         }
 
         .nav-links a {
-            color: white;
+            color: var(--text-gray);
             text-decoration: none;
-            margin-left: 20px;
-            font-size: 0.9rem;
-            transition: color 0.3s;
-            text-transform: uppercase;
+            font-size: 0.95rem;
             font-weight: 600;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            position: relative;
         }
 
         .nav-links a:hover {
-            color: var(--primary-color);
+            color: var(--neon-purple);
+            text-shadow: 0 0 10px var(--primary-purple);
         }
 
-        .btn-download {
-            background-color: transparent;
-            border: 1px solid var(--primary-color);
-            color: var(--primary-color);
-            padding: 10px 20px;
+        /* Pequeña línea debajo al pasar el mouse */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--neon-purple);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn-action {
+            background: linear-gradient(45deg, var(--primary-purple), var(--neon-purple));
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: bold;
-            transition: all 0.3s;
-            margin-left: 20px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.4);
         }
 
-        .btn-download:hover {
-            background-color: var(--primary-color);
-            color: black;
-            box-shadow: 0 0 15px var(--primary-color);
+        .btn-action:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(217, 70, 239, 0.6);
         }
 
         /* Hero Section */
@@ -92,26 +121,32 @@
             align-items: center;
             text-align: center;
             padding: 0 20px;
-            background: radial-gradient(circle at center, rgba(0, 243, 255, 0.05) 0%, rgba(5, 5, 5, 1) 70%);
+            /* Fondo con degradado radial morado sutil */
+            background: radial-gradient(circle at 50% 50%, rgba(138, 43, 226, 0.15) 0%, rgba(5, 5, 5, 1) 70%);
         }
 
         .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 10px;
+            font-size: 5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            font-weight: 900;
         }
 
         .hero h1 span {
-            color: var(--primary-color);
-            text-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+            display: block;
+            font-size: 2rem;
+            color: var(--neon-purple);
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px var(--primary-purple);
         }
 
         .hero p {
             font-size: 1.2rem;
             color: var(--text-gray);
             max-width: 600px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             line-height: 1.6;
         }
 
@@ -120,127 +155,141 @@
             gap: 20px;
         }
 
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: black;
-            padding: 15px 30px;
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--neon-purple);
+            color: var(--neon-purple);
+            padding: 12px 30px;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: bold;
-            text-transform: uppercase;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            border: 1px solid white;
-            color: white;
-            padding: 15px 30px;
-            text-decoration: none;
-            font-weight: bold;
-            text-transform: uppercase;
             transition: all 0.3s;
         }
 
-        .btn-secondary:hover {
-            border-color: var(--primary-color);
-            color: var(--primary-color);
+        .btn-outline:hover {
+            background: var(--neon-purple);
+            color: white;
+            box-shadow: 0 0 20px var(--primary-purple);
         }
 
-        /* Features Section (Tarjetas) */
-        .features {
-            padding: 80px 5%;
+        /* Sección de Tarjetas (Apps/Services) */
+        .grid-section {
+            padding: 100px 5%;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            background-color: #080808;
+            gap: 40px;
+            background: #080808;
         }
 
         .card {
-            background: #111;
-            padding: 30px;
-            border: 1px solid #222;
-            transition: transform 0.3s, border-color 0.3s;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(138, 43, 226, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-color);
+            transform: translateY(-10px);
+            border-color: var(--neon-purple);
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.2);
         }
 
         .card h3 {
+            font-size: 1.5rem;
             margin-bottom: 15px;
-            color: var(--primary-color);
+            color: white;
         }
 
         .card p {
             color: var(--text-gray);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
 
-        /* Footer */
+        /* Icono decorativo en la tarjeta */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-purple), var(--neon-purple));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
         footer {
             text-align: center;
-            padding: 40px;
-            border-top: 1px solid #222;
+            padding: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
             color: var(--text-gray);
-            font-size: 0.8rem;
+            font-size: 0.9rem;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            nav { flex-direction: column; gap: 20px; }
-            .nav-links { margin-bottom: 20px; }
+            .hero h1 { font-size: 3rem; }
+            .hero h1 span { font-size: 1.5rem; }
+            nav { flex-direction: column; padding: 20px; gap: 15px; }
+            .nav-links { gap: 15px; font-size: 0.8rem; }
             .hero-buttons { flex-direction: column; width: 100%; }
-            .btn-primary, .btn-secondary { width: 100%; text-align: center; }
+            .btn-action, .btn-outline { width: 100%; text-align: center; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navegación -->
+    <!-- Navegación Blur -->
     <nav>
         <div class="logo">Cursed<span>Lov</span></div>
         <div class="nav-links">
-            <a href="#inicio">Inicio</a>
-            <a href="#servicios">Servicios</a>
-            <a href="#portafolio">Portafolio</a>
-            <a href="#contacto">Contacto</a>
+            <a href="#accueil">Accueil</a>
+            <a href="#services">Services</a>
+            <a href="#apps">Applications</a>
+            <a href="#aide">Aide</a>
         </div>
-        <a href="#" class="btn-download">Descargar Ahora</a>
+        <a href="#" class="btn-action">Rejoindre</a>
     </nav>
 
-    <!-- Sección Principal (Hero) -->
-    <section class="hero" id="inicio">
-        <h1>Bienvenido a <br><span>CursedLov</span></h1>
-        <p>Optimización, rendimiento y estilo. Tu destino para herramientas tech de última generación. Diseñado para gamers y creadores.</p>
+    <!-- Hero Section -->
+    <section class="hero" id="accueil">
+        <h1>
+            <span>Bienvenue dans le</span>
+            CursedLov
+        </h1>
+        <p>Plongez dans l'univers digital. Optimisation, outils exclusifs et une expérience utilisateur conçue pour les initiés.</p>
         
         <div class="hero-buttons">
-            <a href="#" class="btn-primary">Ver Proyectos</a>
-            <a href="#" class="btn-secondary">Sobre Nosotros</a>
+            <a href="#apps" class="btn-action">Voir les Apps</a>
+            <a href="#services" class="btn-outline">Nos Services</a>
         </div>
     </section>
 
-    <!-- Características -->
-    <section class="features" id="servicios">
+    <!-- Grid de Contenido -->
+    <section class="grid-section" id="apps">
         <div class="card">
-            <h3>⚡ Optimización</h3>
-            <p>Mejora el rendimiento de tu sistema con nuestras herramientas personalizadas. Limpieza profunda y ajustes de latencia.</p>
+            <h3>🚀 Optimiseur PC</h3>
+            <p>Libérez la puissance de votre machine. Nettoyage profond et réglages de latence pour une performance maximale.</p>
         </div>
         <div class="card">
-            <h3> Gaming Ready</h3>
-            <p>Configuraciones diseñadas específicamente para obtener los mejores FPS y la menor input lag en tus juegos favoritos.</p>
+            <h3>🎮 Gaming Suite</h3>
+            <p>Outils conçus pour les gamers. Boostez vos FPS et réduisez l'input lag avec nos profils personnalisés.</p>
         </div>
         <div class="card">
-            <h3>🛠️ Soporte Directo</h3>
-            <p>Comunidad activa y soporte técnico directo para resolver cualquier duda sobre nuestros servicios y descargas.</p>
+            <h3>🛡️ Sécurité & Aide</h3>
+            <p>Protection avancée et support communautaire. Nous vous accompagnons à chaque étape de votre configuration.</p>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 CursedLov. Todos los derechos reservados.</p>
+        <p>&copy; 2026 CursedLov. Tous droits réservés. | Fait avec passion.</p>
     </footer>
 
 </body>
