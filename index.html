@@ -1,105 +1,83 @@
-<!-- SYS DOWNLOAD SECTION -->
-<section id="sys-download" class="fade-in-section" style="position:relative; overflow:hidden; padding-top: 100px;">
-    
-    <!-- Animación de fondo -->
-    <div class="sys-bg-animation"></div>
+<style>
+    /* Fondo animado sutil tipo "Boot Screen" */
+    .sys-bg-animation {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: radial-gradient(circle at center, rgba(124, 58, 237, 0.08) 0%, transparent 70%);
+        z-index: -1;
+        animation: pulseGlow 6s infinite alternate;
+        pointer-events: none;
+    }
 
-    <h2>Sys <span>Download</span></h2>
-    <p style="text-align:center; color:#9ca3af; max-width:700px; margin:0 auto 50px; font-size:1.1rem; line-height:1.6;">
-        Custom-built Windows images optimized for performance, privacy, and stability. Designed for advanced users who demand control over their operating system.
-    </p>
+    @keyframes pulseGlow {
+        0% { opacity: 0.3; transform: scale(1); }
+        100% { opacity: 0.6; transform: scale(1.1); }
+    }
 
-    <div class="apps-grid">
+    /* Tarjetas más oscuras y elegantes para Sys Download */
+    .sys-card {
+        background: #08080c; /* Más oscuro que las normales */
+        border: 1px solid #1f2937;
+        transition: all 0.4s ease;
+    }
 
-        <!-- Opti OS -->
-        <div class="app-card sys-card">
-            <div class="app-header">
-                <div class="app-icon"><i class="fab fa-windows"></i></div>
-                <div class="app-title">
-                    <h3>Opti OS</h3>
-                    <span>Windows 10 Pro • x64</span>
-                </div>
-            </div>
-            <p class="app-desc">Stripped-down Windows 10 build with telemetry removed, services disabled, and kernel tuned for low-latency tasks. Ideal for gaming rigs.</p>
-            <a href="https://www.mediafire.com/file/hh3ho16gtm40r5h" target="_blank" class="btn-sys-download">
-                <i class="fas fa-download"></i> Download ISO
-            </a>
-        </div>
+    .sys-card:hover {
+        border-color: var(--primary-cyan);
+        box-shadow: 0 0 25px rgba(6, 182, 212, 0.2);
+        transform: translateY(-5px);
+    }
 
-        <!-- Super Lite Win7→Win11 -->
-        <div class="app-card sys-card">
-            <div class="app-header">
-                <div class="app-icon"><i class="fas fa-microchip"></i></div>
-                <div class="app-title">
-                    <h3>Super Lite</h3>
-                    <span>Win 7 → Win 11 Hybrid • x64</span>
-                </div>
-            </div>
-            <p class="app-desc">Hybrid image combining Win7’s lightweight core with Win11’s modern UI layer. Perfect for machines with 2GB RAM or less. No bloat.</p>
-            <a href="https://www.mediafire.com/file/lkhfjcz7ce0cn5p" target="_blank" class="btn-sys-download">
-                <i class="fas fa-download"></i> Download ISO
-            </a>
-        </div>
+    /* BOTONES DE DESCARGA PREMIUM */
+    .btn-sys-download {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        padding: 14px;
+        margin-top: 15px;
+        
+        /* Degradado Morado a Cyan */
+        background: linear-gradient(90deg, #7c3aed 0%, #06b6d4 100%);
+        background-size: 200% auto;
+        
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+        position: relative;
+        overflow: hidden;
+    }
 
-        <!-- Super Lite Win10→Win11 -->
-        <div class="app-card sys-card">
-            <div class="app-header">
-                <div class="app-icon"><i class="fas fa-memory"></i></div>
-                <div class="app-title">
-                    <h3>Super Lite</h3>
-                    <span>Win 10 → Win 11 Upgrade • x64</span>
-                </div>
-            </div>
-            <p class="app-desc">Optimized upgrade path from Win10 to Win11 without losing performance. Pre-configured drivers, disabled Cortana/Edge.</p>
-            <a href="https://www.mediafire.com/file/eizgx5euze0ak6g/Melhor_Win_10_Lite.rar/file" target="_blank" class="btn-sys-download">
-                <i class="fas fa-file-archive"></i> Download RAR
-            </a>
-        </div>
+    /* Efecto de brillo al pasar el mouse */
+    .btn-sys-download::before {
+        content: '';
+        position: absolute;
+        top: 0; left: -100%;
+        width: 100%; height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+        transition: 0.5s;
+    }
 
-        <!-- BanaOs -->
-        <div class="app-card sys-card">
-            <div class="app-header">
-                <div class="app-icon"><i class="fas fa-server"></i></div>
-                <div class="app-title">
-                    <h3>BanaOs</h3>
-                    <span>Windows 11 Enterprise • x64</span>
-                </div>
-            </div>
-            <p class="app-desc">Enterprise-grade Windows 11 build with group policy tweaks, remote desktop enabled, and security hardened. For power users.</p>
-            <a href="https://www.mediafire.com/file/wkf4a0klwleptb9" target="_blank" class="btn-sys-download">
-                <i class="fas fa-download"></i> Download ISO
-            </a>
-        </div>
+    .btn-sys-download:hover::before {
+        left: 100%;
+    }
 
-        <!-- Win 10 Lite Intel -->
-        <div class="app-card sys-card">
-            <div class="app-header">
-                <div class="app-icon"><i class="fas fa-laptop"></i></div>
-                <div class="app-title">
-                    <h3>Win 10 Lite</h3>
-                    <span>Intel Celeron Optimized • x86/x64</span>
-                </div>
-            </div>
-            <p class="app-desc">Specifically tuned for Intel Celeron processors. Disables unnecessary background processes and boosts boot speed on entry-level laptops.</p>
-            <a href="https://www.mediafire.com/file/su0bw36kfktqilf/WIN_10_LITE_BY_CPU_INTEL_CELERON.ISO/file" target="_blank" class="btn-sys-download">
-                <i class="fas fa-download"></i> Download ISO
-            </a>
-        </div>
+    .btn-sys-download:hover {
+        background-position: right center; /* Mueve el degradado */
+        box-shadow: 0 0 20px var(--primary-cyan), 0 0 40px var(--primary-purple);
+        transform: scale(1.02);
+        color: white;
+    }
 
-        <!-- Unify OS -->
-        <div class="app-card sys-card">
-            <div class="app-header">
-                <div class="app-icon"><i class="fas fa-globe"></i></div>
-                <div class="app-title">
-                    <h3>Unify OS</h3>
-                    <span>Cross-Version Universal • x64</span>
-                </div>
-            </div>
-            <p class="app-desc">Universal Windows image compatible with Win10/Win11 systems. Auto-detects hardware and applies optimal settings. Includes driver pack.</p>
-            <a href="https://drive.google.com/file/d/169QgvAns2cF_yqP6ctQQfgc0UoyyVso6/view" target="_blank" class="btn-sys-download">
-                <i class="fab fa-google-drive"></i> Open Drive
-            </a>
-        </div>
-
-    </div>
-</section>
+    .btn-sys-download i {
+        font-size: 1.1rem;
+    }
+</style>
